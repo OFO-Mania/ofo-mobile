@@ -41,13 +41,3 @@ target 'ofo' do
 
   use_native_modules!
 end
-
-target 'ofo-tvOS' do
-  # Pods for ofo-tvOS
-
-  target 'ofo-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end

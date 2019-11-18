@@ -1,4 +1,4 @@
-package com.ofo;
+package xyz.ofomania.ofomobile;
 
 import android.app.Application;
 import android.content.Context;
@@ -7,6 +7,8 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import xyz.ofomania.ofomobile.BuildConfig;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
