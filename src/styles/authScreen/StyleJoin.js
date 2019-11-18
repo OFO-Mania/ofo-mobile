@@ -1,76 +1,37 @@
-import React from 'react';
 import { StyleSheet } from  'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 0.9,
+        flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
+        marginHorizontal:35
+    },
+    headerJoin: {
+        flex: 0.1,
         backgroundColor:"#4D2A86",
-    },
-    containerPhoneNumber: {
-        flex:1, 
-        flexDirection:"row", 
-        marginHorizontal:50, 
-        justifyContent:"center", 
-        alignItems:"center",
-        marginTop: 130
-    },
-    containerSignIn: {
-        flex:1, 
-        flexDirection:"column", 
-        marginHorizontal:50, 
-        justifyContent:"center", 
-        alignItems:"center",
-        marginTop: 25,
-    },
-    containerHelp: {
-        flex:1, 
-        flexDirection:"row", 
-        justifyContent:"center", 
-        alignItems:"center",
-        marginTop: 25
-    },
-    title: {
-        textAlign:"center",
-        fontWeight:"bold",
-        fontSize:65,
-        color:"#FEFEFE",
-        marginTop:130
-    },
-    inputPhoneNumber: {
-        color:"white",
-        fontSize:15,
+        flexDirection:"row",
+        alignItems:"center" 
     },
     borderInput: {
-        borderBottomColor:"white",
+        borderBottomColor:"black",
         height:30
     },
-    iconUser: {
-        width:25, 
-        height:25
+    input: {
+        color:"black",
+        fontSize:15,
     },
-    buttonSignIn: {
-        height:40,
-        width:275, 
-        alignItems:"center", 
-        justifyContent:"center",
-        borderColor:"#9A7AC4", 
-        borderRadius: 20,
-        borderWidth:1
-    },
-    buttonJoinNow: {
+    buttonNextNow: {
+        marginTop:70,
         backgroundColor:"#06B3BA",
         height:40,
-        width:275, 
         alignItems:"center", 
         justifyContent:"center",
         borderColor:"#266C9C", 
         borderRadius: 20,
     },
-    textButton: {
-        color:"#9A7AC4",
-        fontSize:15
-    },
-    textButtonJoin: {
+    textButtonNext: {
         color:"white",
         fontSize:15
     },

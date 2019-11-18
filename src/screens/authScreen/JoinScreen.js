@@ -4,10 +4,9 @@ import {
     Text,
     StatusBar, 
     ScrollView, 
-    Image,
     TouchableOpacity,
 } from 'react-native';
-import styles from '../../styles/authScreen/StyleSignUp';
+import styles from '../../styles/authScreen/StyleJoin';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, CheckBox } from 'react-native-elements';
 
@@ -25,20 +24,27 @@ const SignUpScreen = (props) => {
             <View style={styles.headerJoin}>
                 <Icon 
                     style={{marginLeft:20}} 
-                    name='chevron-left' size={24} 
+                    name='chevron-left' 
+                    size={24} 
                     color='white' 
                     onPress={() => props.navigation.navigate("SignIn")}
                 />
                 <Text style={{fontSize:17, color:"white", marginLeft:30}}>JOIN OFO</Text>
             </View>
             <View style={styles.container}> 
-                <ScrollView>
-                    <Text style={{fontSize:15, textAlign:"justify"}}>
-                        Thank you for joining OFO! We will send the code via sms and email to verify the registration process
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Text style={{marginHorizontal:10,fontSize:15, textAlign:"left"}}>
+                        Thank you for joining OFO! We will send the 
+                        <Text style={{fontWeight:"bold"}}> code </Text> 
+                        via 
+                        <Text style={{fontWeight:"bold"}}> SMS </Text> 
+                        and 
+                        <Text style={{fontWeight:"bold"}}> email </Text> 
+                        to verify the registration process
                     </Text>
                     <Input
                         label={fullName === "" ? "" : "Fullname"}
-                        labelStyle={{color:"black", marginTop:10}} 
+                        labelStyle={{color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
                         inputStyle={styles.input}    
                         inputContainerStyle={styles.borderInput}
                         placeholderTextColor="grey"
@@ -49,7 +55,7 @@ const SignUpScreen = (props) => {
                     />
                     <Input
                         label={phoneNumber === "" ? "" : "Phone Number"}
-                        labelStyle={{color:"black", marginTop:10}} 
+                        labelStyle={{color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
                         inputStyle={styles.input}    
                         inputContainerStyle={styles.borderInput}
                         placeholderTextColor="grey"
@@ -61,7 +67,7 @@ const SignUpScreen = (props) => {
                     />
                     <Input
                         label={email === "" ? "" : "Email"}
-                        labelStyle={{color:"black", marginTop:10}} 
+                        labelStyle={{color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
                         inputStyle={styles.input}    
                         inputContainerStyle={styles.borderInput}
                         placeholderTextColor="grey"
@@ -73,7 +79,7 @@ const SignUpScreen = (props) => {
                     />
                     <Input
                         label={codePromo === "" ? "" : "Referal Code"}
-                        labelStyle={{color:"black", marginTop:10}} 
+                        labelStyle={{color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
                         inputStyle={styles.input}    
                         inputContainerStyle={styles.borderInput}
                         placeholderTextColor="grey"
@@ -110,7 +116,10 @@ const SignUpScreen = (props) => {
                             > privacy policy </Text> 
                         </Text>
                     </View>
-                    <TouchableOpacity style={styles.buttonNextNow}>
+                    <TouchableOpacity 
+                        style={styles.buttonNextNow}
+                        onPress={() => props.navigation.navigate("OTPPhone")}
+                    >
                         <Text style={styles.textButtonNext}>NEXT</Text>
                     </TouchableOpacity>
                 </ScrollView>

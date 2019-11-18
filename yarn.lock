@@ -1145,6 +1145,11 @@
     source-map-support "^0.5.7"
     tslib "^1.9.3"
 
+"@twotalltotems/react-native-otp-input@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@twotalltotems/react-native-otp-input/-/react-native-otp-input-1.1.2.tgz#63e9b0a58dc1cec2a5f23b840ff6a92bc75c4936"
+  integrity sha512-CAQhSrG0dq7IwQBRXRgW0OJ21Z4bgk15m7+XAa0VBc1siXXbxTSTYZAhrLejwEFiEHhLyS07VJDNV9fQU4835g==
+
 "@types/agent-base@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@types/agent-base/-/agent-base-4.2.0.tgz#00644e8b395b40e1bf50aaf1d22cabc1200d5051"
