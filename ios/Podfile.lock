@@ -225,8 +225,14 @@ PODS:
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
+  - RNSentry (1.1.0):
+    - React
+    - Sentry (~> 4.4.0)
   - RNVectorIcons (6.6.0):
     - React
+  - Sentry (4.4.2):
+    - Sentry/Core (= 4.4.2)
+  - Sentry/Core (4.4.2)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -261,12 +267,14 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - Sentry
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -325,6 +333,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -360,9 +370,11 @@ SPEC CHECKSUMS:
   RNGestureHandler: a4ddde1ffc6e590c8127b8b7eabfdade45475c74
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
+  RNSentry: 932ac1c8b2f581b1c8be5812f88ff556c99e7fb7
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  Sentry: bba998b0fb157fdd6596aa73290a9d67ae47be79
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 269db893056bfbfbc760fc80c216abb2d0e12ae1
+PODFILE CHECKSUM: 3bd9609306be27ed4b3e6d3ee2892d68ac87c36a
 
 COCOAPODS: 1.8.4
