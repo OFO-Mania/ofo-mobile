@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.ofo"
+        applicationId "xyz.ofomania.ofomobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,4 +1,4 @@
-package com.ofo;
+package xyz.ofomania.ofomobile;
 
 import com.facebook.react.ReactActivity;
 
