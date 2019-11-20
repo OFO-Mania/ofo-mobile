@@ -1,9 +1,6 @@
 import React from 'react';
-import { 
-    View,
-    Text,
-} from 'react-native';
-import styles from '../../styles/authScreen/StyleSignUp';
+import { View, Text } from 'react-native';
+import styles from '../../styles/authScreen/StyleJoin';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { WebView } from 'react-native-webview';
 
