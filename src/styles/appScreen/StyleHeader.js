@@ -23,29 +23,6 @@ const styles = StyleSheet.create({
         fontSize:20, 
         marginLeft:20
     },
-    textOFO: {
-        marginLeft:20,
-        color:"white",
-        fontWeight:"bold", 
-        fontSize:14
-    },
-    textRp: {
-        marginTop:-5,
-        marginLeft:20, 
-        color:"white",
-        fontWeight:"bold"
-    },
-    textCash:{
-        textAlign:"center",
-        fontSize:30
-    },
-    textOFOPoint: {
-        marginTop:10,
-        marginLeft:20,
-        color:"white",
-        fontWeight:"bold", 
-        fontSize:14
-    },
 })
 
 export default styles;
