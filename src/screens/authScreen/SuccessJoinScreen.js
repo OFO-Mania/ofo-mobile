@@ -13,7 +13,7 @@ const SuccessJoinScreen = (props) => {
         {changeView ?
             <View style={styles.container1}>
                 <Text style={styles.headerText1}>Congratulation {username},</Text>
-                <Text style={styles.headerText2}>You are registered in OVO Club!</Text>
+                <Text style={styles.headerText2}>You are registered in OFO Club!</Text>
                 <Text style={styles.subHeaderText}>
                     You can start using OFO in everyday life, get special offers and start collecting OFO Points
                 </Text>
