@@ -34,7 +34,7 @@ const JoinScreen = (props) => {
             <View style={styles.container}> 
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Text style={{marginHorizontal:10,fontSize:15, textAlign:"left"}}>
-                        Thank you for joining OFO! We will send the 
+                        Thank you for joining OFO! We will send the
                         <Text style={{fontWeight:"bold"}}> code </Text> 
                         via 
                         <Text style={{fontWeight:"bold"}}> SMS </Text> 

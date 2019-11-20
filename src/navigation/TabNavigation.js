@@ -63,9 +63,8 @@ const TabNavigator = createBottomTabNavigator({
             }
             
             if (routeName === 'Scan') {
-                return <Image style={{width: 50, height: 50, marginBottom:20,borderWidth:1, borderColor:"grey", borderRadius:25}} 
-                              source={sourceImage} 
-                              />;
+                return <Image style={{width: 50, height: 50, marginBottom:20,borderWidth:3, borderColor:"white", borderRadius:25}} 
+                              source={sourceImage} />;
             } else {
                 return <Image style={{width: 25, height: 25}} source={sourceImage} />;
             }
