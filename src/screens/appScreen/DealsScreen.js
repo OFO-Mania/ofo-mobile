@@ -58,12 +58,12 @@ const DealsScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{marginLeft:10,marginTop:10,height:"50%"}}>
-                    <Text style={{fontSize:15}}>{item.title}</Text>
-                    <Text style={{fontSize:14}}>{item.desc}</Text>
-                    <Text style={{fontSize:12, opacity:0.3, marginBottom:5}}>
+                    <Text style={{fontSize:15, marginBottom:2}}>{item.title}</Text>
+                    <Text style={{fontSize:13, marginBottom:6}}>{item.desc}</Text>
+                    <Text style={{fontSize:11, opacity:0.3, marginBottom:6}}>
                         Available {item.voucher} vouchers
                     </Text>
-                    <Text style={{fontSize:20, color:"#4D2A86"}}>{item.price}</Text>
+                    <Text style={{fontSize:15, color:"#4D2A86", marginBottom:4}}>{item.price}</Text>
                 </View>
             </View>
         );
