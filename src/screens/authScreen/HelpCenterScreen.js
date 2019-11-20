@@ -4,7 +4,7 @@ import styles from '../../styles/authScreen/StyleJoin';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { WebView } from 'react-native-webview';
 
-const TOSScreen = (props) => {
+const HelpCenterScreen = (props) => {
     return (
         <>
             <View style={styles.headerJoin}>
@@ -12,13 +12,13 @@ const TOSScreen = (props) => {
                     style={{marginLeft:20}} 
                     name='chevron-left' size={24} 
                     color='white' 
-                    onPress={() => props.navigation.navigate("Join")}
+                    onPress={() => props.navigation.navigate("SignIn")}
                 />
-                <Text style={{fontSize:17, color:"white", marginLeft:30}}>Terms & Conditions</Text>
+                <Text style={{fontSize:17, color:"white", marginLeft:30}}>Help Center</Text>
             </View>
-            <WebView source={{ uri: 'https://www.ovo.id/syarat-ketentuan' }} />
+            <WebView source={{ uri: 'https://www.ovo.id/helpcenter' }} />
         </>
     )
 }
 
-export default TOSScreen;
+export default HelpCenterScreen;
