@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, ImageBackground, ScrollView, Dimensions } from 'react-native';
+import {
+    Text,
+    View,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    ScrollView,
+    Dimensions,
+    Platform,
+    RefreshControl,
+} from 'react-native';
 import styles from '../../styles/appScreen/StyleHeader';
 import stylesDeals from '../../styles/appScreen/StyleDeals';
 import stylesHome from '../../styles/appScreen/StyleHome';
@@ -36,6 +46,15 @@ const DealsScreen = (props) => {
     const [activeDealsSlide, setActiveDealsSlide] = useState(0);
     const [activeHappinessSlide, setActiveHappinessSlide] = useState(0);
     const [activeFavoriteSlide, setActiveFavoriteSlide] = useState(0);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = () => {
+        setRefreshing(true);
+        const timeout = setTimeout(() => {
+            setRefreshing(false);
+            clearTimeout(timeout);
+        }, 3000);
+    };
 
     //Banner Deals
     const renderBannerDeals = ({item, index}) => {
@@ -71,8 +90,16 @@ const DealsScreen = (props) => {
 
     return (
         <>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerSmallText}>
+            <View style={[styles.headerContainer, Platform.OS === 'ios' ? {
+                alignItems: 'center'
+            } : {
+                alignItems: 'start'
+            }]}>
+                <Text style={[styles.headerSmallText, Platform.OS === 'ios' ? {
+                    marginLeft: 0,
+                } : {
+                    marginLeft: 20
+                }]}>
                     Deals
                 </Text>
             </View>
@@ -83,13 +110,22 @@ const DealsScreen = (props) => {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={stylesDeals.buttonVoucher}>
-                    <Image 
+                    <Image
                         source={require('../../assets/images/imagesDeals/IconPromo.png')}
-                        style={{height:"80%", width:"60%"}}    
+                        style={{height:"80%", width:"60%"}}
                     />
                 </TouchableOpacity>
             </View>
-            <ScrollView>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                        tintColor="green"
+                        style={{ backgroundColor: "#F8F8F8" }}
+                    />
+                }
+            >
                 <View style={stylesDeals.containerButtonDealsWah}>
                     <TouchableOpacity style={{width:"90%", height:"70%"}}>
                         <ImageBackground source={require('../../assets/images/imagesDeals/Icon1Move.png')}
@@ -117,6 +153,7 @@ const DealsScreen = (props) => {
                     onSnapToItem={setActiveDealsSlide}
                     inactiveSlideScale={1}
                     activeSlideAlignment={"center"}
+                    containerCustomStyle={{ marginBottom: 20 }}
                 />
                 <View style={stylesDeals.separator} />
                 <View style={stylesDeals.containerTextCashback}>
@@ -134,6 +171,7 @@ const DealsScreen = (props) => {
                     onSnapToItem={setActiveHappinessSlide}
                     inactiveSlideScale={1}
                     activeSlideAlignment={"center"}
+                    containerCustomStyle={{ marginTop: 10, marginBottom: 20 }}
                 />
                 <View style={stylesDeals.separator} />
                 <View style={stylesDeals.containerTextCashback}>
@@ -151,36 +189,37 @@ const DealsScreen = (props) => {
                     onSnapToItem={setActiveFavoriteSlide}
                     inactiveSlideScale={1}
                     activeSlideAlignment={"center"}
+                    containerCustomStyle={{ marginTop: 10, marginBottom: 20 }}
                 />
                 <View style={stylesDeals.separator} />
                 <View style={stylesDeals.containerTextCashback}>
                     <Text style={stylesDeals.textCashback}>Enjoy the other world</Text>
                 </View>
                 <Text style={stylesDeals.subTitle}>Please take a look brother</Text>
-                <View style={[stylesHome.containerBoxSubMenu,{marginTop:-25}]}>
+                <View style={[stylesHome.containerBoxSubMenu,{marginTop:-25, marginBottom: 20}]}>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconFood.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Food</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconShoping.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Shopping</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconTransport.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Transport</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconEducation.png')}
                             style={stylesHome.buttonImageMenu}
                         />
@@ -189,28 +228,28 @@ const DealsScreen = (props) => {
                 </View>
                 <View style={[stylesHome.containerBoxSubMenu,{marginTop:-25}]}>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconGift.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Gift</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconTravel.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Travel</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconPersonal.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Personal</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconSport.png')}
                             style={stylesHome.buttonImageMenu}
                         />
@@ -219,28 +258,28 @@ const DealsScreen = (props) => {
                 </View>
                 <View style={[stylesHome.containerBoxSubMenu,{marginTop:-25}]}>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconFashion.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Fashion</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconHealth.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Health</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconEntertainment.png')}
                             style={stylesHome.buttonImageMenu}
                         />
                         <Text style={stylesHome.titleSubMenu}>Ent</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image 
+                        <Image
                             source={require('../../assets/images/imagesDeals/IconAutomotive.png')}
                             style={stylesHome.buttonImageMenu}
                         />

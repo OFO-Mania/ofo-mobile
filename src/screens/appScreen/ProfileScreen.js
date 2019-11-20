@@ -1,12 +1,20 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Platform, Text, View} from 'react-native';
 import styles from '../../styles/appScreen/StyleHeader';
 
 const ProfileScreen = () => {
     return (
         <>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerSmallText}>
+            <View style={[styles.headerContainer, Platform.OS === 'ios' ? {
+                alignItems: 'center'
+            } : {
+                alignItems: 'start'
+            }]}>
+                <Text style={[styles.headerSmallText, Platform.OS === 'ios' ? {
+                    marginLeft: 0,
+                } : {
+                    marginLeft: 20
+                }]}>
                     Profile
                 </Text>
             </View>

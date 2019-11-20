@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { 
+import {
     View,
     Text,
-    StatusBar, 
-    ScrollView, 
+    StatusBar,
+    ScrollView,
     Image,
     TouchableOpacity,
     ImageBackground
@@ -14,7 +14,7 @@ import { Input } from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
 
 const SignInScreen = (props) => {
-    
+
     const [phoneNumber, setPhoneNumber] = useState("");
     const [buttonSignIn, setButtonSignIn] = useState(true)
 
@@ -25,7 +25,7 @@ const SignInScreen = (props) => {
             props.navigation.navigate("OTPSignIn")
         }
     }
-    
+
     useEffect(() => {
         if (phoneNumber === "" || phoneNumber === null) {
             setButtonSignIn(true)
@@ -36,10 +36,9 @@ const SignInScreen = (props) => {
 
     return(
         <>
-            <StatusBar backgroundColor="#422575" barStyle="light-content" />
             <View style={styles.container}>
-                <ImageBackground 
-                    source={require("../../assets/images/imagesAuth/bg-signin.png")} 
+                <ImageBackground
+                    source={require("../../assets/images/imagesAuth/bg-signin.png")}
                     style={{width:"100%", height:"100%"}}
                 >
                     <ScrollView>
@@ -47,7 +46,7 @@ const SignInScreen = (props) => {
                         <View style={styles.containerPhoneNumber}>
                             <Image source={require("../../assets/images/imagesAuth/IconUserSignIn.png")} style={styles.iconUser} />
                             <Input
-                                inputStyle={styles.inputPhoneNumber}    
+                                inputStyle={styles.inputPhoneNumber}
                                 inputContainerStyle={styles.borderInput}
                                 placeholderTextColor="white"
                                 placeholder='Phone Number'
@@ -76,7 +75,7 @@ const SignInScreen = (props) => {
                                 <Image source={require("../../assets/images/imagesAuth/IconHelpSignIn.png")} style={styles.iconUser} />
                                 <Text style={{marginTop:10, color:"#19AABB"}}> Need Help ?</Text>
                             </TouchableOpacity>
-                        </View>   
+                        </View>
                     </ScrollView>
                 </ImageBackground>
             </View>

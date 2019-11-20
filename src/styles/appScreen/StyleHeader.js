@@ -2,25 +2,26 @@ import { StyleSheet } from  'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        flex:1, 
+        flex:1,
         flexDirection:"column"
-    },  
+    },
     headerContainer: {
         height:56,
-        width:"100%", 
-        backgroundColor:"#4D2A86", 
+        width:"100%",
+        backgroundColor:"#4D2A86",
         justifyContent:"center"
     },
     headerText: {
+        fontFamily: "Choplin-Medium-DEMO",
         color:"white",
         fontWeight:"bold",
-        fontSize:25, 
+        fontSize:25,
         marginLeft:20
     },
     headerSmallText: {
         color:"white",
         fontWeight:"bold",
-        fontSize:20, 
+        fontSize:20,
         marginLeft:20
     },
 })

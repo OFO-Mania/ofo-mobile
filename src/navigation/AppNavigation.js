@@ -68,10 +68,10 @@ const SignInStack = createStackNavigator(
     SecurityCode: SecurityCodeScreen,
     OTPForgetSecurityCode: OTPForgetSecurityCode
   },
-  { 
+  {
     initialRouteName: 'SignIn',
     headerMode: 'none',
-  } 
+  }
 )
 
 //Auth Navigation

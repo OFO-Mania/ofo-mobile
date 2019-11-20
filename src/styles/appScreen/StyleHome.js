@@ -5,15 +5,17 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"row",
         alignSelf:"center",
-        backgroundColor:"white", 
-        width:"88%", 
+        backgroundColor:"white",
+        width:"88%",
         height:70,
         borderRadius:13,
-        marginTop:-70,
+        marginTop: -65,
         borderWidth: 0.2,
         borderColor: "grey",
         justifyContent:"space-around",
         alignItems:"center",
+        shadowRadius: 4,
+        shadowOpacity: 0.2,
     },
     containerBoxSubMenu: {
         flex:1,
@@ -27,13 +29,14 @@ const styles = StyleSheet.create({
     },
     textOFO: {
         marginLeft:20,
+        marginBottom: 5,
         color:"white",
-        fontWeight:"bold", 
+        fontWeight:"bold",
         fontSize:14
     },
     textRp: {
         marginTop:-5,
-        marginLeft:20, 
+        marginLeft:20,
         color:"white",
         fontWeight:"bold"
     },
@@ -42,20 +45,20 @@ const styles = StyleSheet.create({
         fontSize:30
     },
     textOFOPoint: {
-        marginTop:10,
+        marginTop:5,
         marginLeft:20,
         color:"white",
-        fontWeight:"bold", 
+        fontWeight:"bold",
         fontSize:14
     },
     imageBanner: {
-        height:"100%", 
-        width:"100%", 
+        height:"100%",
+        width:"100%",
         borderRadius:15
     },
     buttonImageMenu: {
         alignSelf:"center",
-        width:50, 
+        width:50,
         height:50
     },
     dotStyles: {
@@ -73,76 +76,77 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     },
     separator: {
-        width:"100%", 
-        height:10, 
+        width:"100%",
+        height:10,
         backgroundColor:"#F8F8F8"
     },
     containerTextCashback: {
-        flexDirection:"row", 
-        justifyContent:"space-between", 
+        flexDirection:"row",
+        justifyContent:"space-between",
         alignItems:"center",
-        marginHorizontal:15, 
-        marginTop:10, 
-        marginBottom:10
+        marginHorizontal:15,
+        marginVertical: 20
     },
     textCashback: {
-        fontSize:20, 
+        fontSize:20,
         fontWeight:"bold"
     },
     textSeeAll: {
-        fontSize:17, 
-        fontWeight:"bold", 
+        fontSize:17,
+        fontWeight:"bold",
         color:"#06B3BA"
     },
     titleSubMenu: {
-        textAlign:"center", 
+        textAlign:"center",
         marginTop:10
-    },  
+    },
     titleBottomSection: {
-        fontWeight:"bold", 
-        fontSize:20, 
-        marginTop:15, 
+        fontWeight:"bold",
+        fontSize:20,
+        marginTop:20,
         marginLeft:15
     },
     descriptionBottomSection: {
         fontSize:15,
-        marginHorizontal:15, 
+        marginHorizontal:15,
+        marginTop:5,
+        marginBottom: 10,
         opacity:0.3
-    },    
+    },
     containerCard: {
-        flex:1, 
-        flexDirection:"row", 
-        justifyContent:"center", 
-        marginTop:10, 
+        flex:1,
+        flexDirection:"row",
+        justifyContent:"center",
+        marginTop:10,
         marginBottom:30
     },
     card: {
-        width:"44%", 
-        height:220, 
-        marginHorizontal:5, 
-        borderRadius:12, 
-        borderWidth:0.1
+        width:"44%",
+        height:220,
+        marginHorizontal:5,
+        borderRadius:12,
+        borderWidth:0.1,
     },
     imageCard: {
-        width:"100%", 
+        width:"100%",
         height:80,
-        borderTopLeftRadius:12, 
+        borderTopLeftRadius:12,
         borderTopRightRadius:12
     },
     titleCard: {
-        fontWeight:"bold", 
-        marginHorizontal:15, 
-        marginTop:10, 
+        fontWeight:"bold",
+        marginHorizontal:15,
+        marginTop:10,
         fontSize:15
     },
     descriptionCard: {
-        marginHorizontal:15, 
-        marginTop:10, 
+        marginHorizontal:15,
+        marginTop:10,
         fontSize:12
     },
     textBottomCard: {
-        alignSelf:"center", 
-        color:"#06B3BA", 
+        alignSelf:"center",
+        color:"#06B3BA",
         fontWeight:"bold"
     }
 })

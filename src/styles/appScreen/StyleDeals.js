@@ -3,67 +3,67 @@ import { StyleSheet } from  'react-native';
 const styles = StyleSheet.create({
     containerSearchMerchant: {
         flexDirection:"row",
-        height:70, 
-        width:"100%", 
-        justifyContent:"center", 
-        alignItems:"center"
+        height:70,
+        width:"100%",
+        justifyContent:"center",
+        alignItems:"center",
     },
     containerButtonDealsWah: {
         backgroundColor:"#F8F8F8",
         flexDirection:"row",
-        height:130, 
-        width:"100%", 
-        justifyContent:"center", 
+        height:130,
+        width:"100%",
+        justifyContent:"center",
         alignItems:"center"
     },
     imageBGDealsWah: {
-        height:"100%", 
-        width:"100%", 
+        height:"100%",
+        width:"100%",
         justifyContent:"center"
     },
     textDealsWah: {
-        marginLeft:130, 
-        color:"white", 
+        marginLeft:130,
+        color:"white",
         fontSize:20
-    }, 
+    },
     buttonFindMerchant: {
-        backgroundColor:"#EEF0F3", 
-        width:"75%", 
+        backgroundColor:"#EEF0F3",
+        width:"75%",
         height:"60%",
-        marginLeft:20, 
-        justifyContent:"center", 
-        alignItems:"center", 
+        marginLeft:20,
+        justifyContent:"center",
+        alignItems:"center",
         borderRadius:5
     },
     textFindMerchant: {
-        fontWeight:"500", 
+        fontWeight:"500",
         color:"#8C949B"
     },
     buttonVoucher: {
-        width:"20%", 
+        width:"20%",
         height:"60%",
-        justifyContent:"center", 
+        justifyContent:"center",
         alignItems:"center"
     },
     imageBannerDeals: {
-        height:"100%", 
-        width:"100%", 
+        height:"100%",
+        width:"100%",
         borderRadius:5,
         borderWidth:0.2,
         borderColor:"grey"
     },
     imageBannerHappiness: {
-        height:"100%", 
-        width:"100%", 
+        height:"100%",
+        width:"100%",
         borderWidth:0.2,
         borderColor:"grey",
         borderTopLeftRadius: 10,
-        borderTopRightRadius: 10 
+        borderTopRightRadius: 10
     },
     containerBannerDeals: {
         alignSelf:"center",
         height:150,
-        width:300, 
+        width:300,
     },
     containerBannerHappiness: {
         alignSelf:"center",
@@ -73,33 +73,33 @@ const styles = StyleSheet.create({
         flexDirection:"column",
         borderWidth:0.1,
         borderColor:"grey",
-        borderRadius:10 
+        borderRadius:10,
     },
     containerTextCashback: {
-        flexDirection:"row", 
-        justifyContent:"space-between", 
+        flexDirection:"row",
+        justifyContent:"space-between",
         alignItems:"center",
-        marginHorizontal:15, 
-        marginTop:10, 
+        marginHorizontal:15,
+        marginTop: 20,
         marginBottom:10
     },
     textCashback: {
-        fontSize:15, 
-        fontWeight:"bold"
+        fontSize:18,
+        fontWeight:"600",
+        opacity:0.8,
     },
     textSeeAll: {
-        fontSize:15, 
-        fontWeight:"bold", 
+        fontSize:14,
+        fontWeight:"600",
         color:"#06B3BA"
     },
     separator: {
-        marginVertical:10,
-        width:"100%", 
-        height:5, 
+        width:"100%",
+        height:5,
         backgroundColor:"#F8F8F8"
     },
     subTitle: {
-        fontSize:14,
+        fontSize:15,
         opacity:0.5,
         marginLeft:15,
         marginBottom:15

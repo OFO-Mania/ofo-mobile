@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ofoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ofoTests.m */; };
 		04E6A60630B5411C856A81B4 /* libPods-ofoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3EFF016FFAA383114A1663 /* libPods-ofoTests.a */; };
@@ -15,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		A4D4146E2F3F488A92BF32F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B532CCD034667A3F7DA36 /* libz.tbd */; };
 		FCD4BFFA9DC479776E78D51A /* libPods-ofo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3E4AFD3C31574EA9006489 /* libPods-ofo.a */; };
+		5504952E83724759B9760B8B /* Choplin-Medium-DEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +64,7 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDA70777139ED715B08D77A1 /* Pods-ofo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofo.debug.xcconfig"; path = "Target Support Files/Pods-ofo/Pods-ofo.debug.xcconfig"; sourceTree = "<group>"; };
 		F0DAD7E2FF5F4D3BBB7D3D6F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */ = {isa = PBXFileReference; name = "Choplin-Medium-DEMO.otf"; path = "../src/assets/fonts/Choplin/Choplin-Medium-DEMO.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +138,7 @@
 				F0DAD7E2FF5F4D3BBB7D3D6F /* Octicons.ttf */,
 				3C017060F6494C5895FA41F3 /* SimpleLineIcons.ttf */,
 				0EC69C6E67BF49138D7A3F10 /* Zocial.ttf */,
+				D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -252,6 +254,7 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 8NTUXLX27L;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
@@ -292,6 +295,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				5504952E83724759B9760B8B /* Choplin-Medium-DEMO.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +489,9 @@
 			baseConfigurationReference = A0A1EA9472243BC4F085431B /* Pods-ofoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8NTUXLX27L;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -500,7 +507,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ofo.app/ofo";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OFO.app/OFO";
 			};
 			name = Debug;
 		};
@@ -509,6 +518,9 @@
 			baseConfigurationReference = 994DB2D1C14650CE2FC55533 /* Pods-ofoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 8NTUXLX27L;
 				INFOPLIST_FILE = ofoTests/Info.plist;
@@ -521,7 +533,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ofo.app/ofo";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OFO.app/OFO";
 			};
 			name = Release;
 		};
@@ -540,7 +554,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ofomania.ofo-mobile";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.ofomania.ofomobile;
 				PRODUCT_NAME = OFO;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -560,7 +574,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ofomania.ofo-mobile";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.ofomania.ofomobile;
 				PRODUCT_NAME = OFO;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

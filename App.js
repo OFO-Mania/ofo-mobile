@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import {Platform, StatusBar, View} from 'react-native';
 import AppNavigation from './src/navigation/AppNavigation';
 import { dsn } from './sentry.json';
 
@@ -11,7 +11,12 @@ const App = () => {
 
   return(
     <>
-      <StatusBar backgroundColor="#422575" barStyle="light-content" />
+      <View style={{
+          backgroundColor: '#4D2A88',
+          height: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
+      }}>
+        <StatusBar backgroundColor="#4D2A88" barStyle="light-content" />
+      </View>
       <AppNavigation/>
     </>
   )
