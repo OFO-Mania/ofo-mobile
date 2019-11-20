@@ -18,7 +18,7 @@ const SuccessJoinScreen = (props) => {
                     You can start using OFO in everyday life, get special offers and start collecting OFO Points
                 </Text>
                 <Image 
-                    source={require("../../assets/images/succesjoin1.png")}
+                    source={require("../../assets/images/imagesAuth/succesjoin1.png")}
                     style={{marginTop:20,height:150, width:150}}
                 />
                 <TouchableOpacity style={styles.button} onPress={() => setChangeView(false)}>
@@ -28,7 +28,7 @@ const SuccessJoinScreen = (props) => {
         : 
             <View style={styles.container2} onPress={() => setChangeView(false)}>
                 <Image 
-                    source={require("../../assets/images/succesjoin2.png")}
+                    source={require("../../assets/images/imagesAuth/succesjoin2.png")}
                     style={{marginTop:40,height:250, width:250}}
                 />  
                 <Text style={{color:"#422575", fontWeight:"bold",fontSize:25}}>OFO's new look!</Text>

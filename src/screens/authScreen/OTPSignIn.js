@@ -4,10 +4,10 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../../styles/authScreen/StyleOTP';
 
-const OTPEmail = (props) => {
+const OTPSignIn = (props) => {
 
     const [verifyCode, setVerifyCode] = useState("");
-    const [email, setEmail] = useState("aldoignatachandra@gmail.com");
+    const [phoneNumber, setPhoneNumber] = useState("081331994242");
     const [timer, setTimer] = useState(21)
 
     return(
@@ -18,14 +18,15 @@ const OTPEmail = (props) => {
                     style={{marginLeft:20}} 
                     name='chevron-left' 
                     size={24} 
-                    color='#422575' 
+                    color='white' 
+                    onPress={() => props.navigation.navigate("SignIn")}
                 />
-                <Text style={styles.textHeader}>JOIN OFO</Text>
+                <Text style={styles.textHeader}>SIGN IN</Text>
             </View>
             <View style={styles.container}>
                 <Text style={styles.inputCodeText}>Input Code</Text>
                 <Text style={styles.inputCodeDescription}>We have sent the code to</Text>
-                <Text style={styles.inputCodeOTPType}>{email}</Text>
+                <Text style={styles.inputCodeOTPType}>{phoneNumber}</Text>
                 <OTPInputView
                     style={styles.inputOTP}
                     pinCount={4}
@@ -36,7 +37,8 @@ const OTPEmail = (props) => {
                     codeInputHighlightStyle={styles.underlineStyleHighLighted}
                     onCodeFilled = {(code => {
                         console.log(`Code is ${code}, you are good to go!`);
-                        props.navigation.navigate("CreateSecurityCode");
+                        props.navigation.navigate("CreateSecurityCode"); //Have Not Security Code
+                        //props.navigation.navigate("SecurityCode"); //Have Security Code
                     })}
                 />
                 <TouchableOpacity>
@@ -49,4 +51,4 @@ const OTPEmail = (props) => {
     )
 }
 
-export default OTPEmail; 
+export default OTPSignIn; 

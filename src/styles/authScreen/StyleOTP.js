@@ -31,6 +31,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         fontSize:20
     },
+    underlineStyleBase2:{
+        width: 30,
+        height: 45,
+        borderWidth: 0,
+        borderBottomWidth: 2,
+        fontSize:20
+    },
     underlineStyleHighLighted: {
         borderColor: "#06B3BA",
     },

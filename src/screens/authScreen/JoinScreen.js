@@ -10,7 +10,7 @@ import styles from '../../styles/authScreen/StyleJoin';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, CheckBox } from 'react-native-elements';
 
-const SignUpScreen = (props) => {
+const JoinScreen = (props) => {
 
     const [fullName, setFullname] = useState("");
     const [phoneNumber, setphoneNumber] = useState("");
@@ -128,4 +128,4 @@ const SignUpScreen = (props) => {
     )
 }
 
-export default SignUpScreen;
+export default JoinScreen;

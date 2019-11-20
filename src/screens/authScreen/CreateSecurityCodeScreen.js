@@ -4,11 +4,9 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../../styles/authScreen/StyleOTP';
 
-const OTPEmail = (props) => {
+const CreateSecurityCodeScreen = (props) => {
 
-    const [verifyCode, setVerifyCode] = useState("");
-    const [email, setEmail] = useState("aldoignatachandra@gmail.com");
-    const [timer, setTimer] = useState(21)
+    const [securityCode, setSecurityCode] = useState("");
 
     return(
         <>
@@ -23,30 +21,27 @@ const OTPEmail = (props) => {
                 <Text style={styles.textHeader}>JOIN OFO</Text>
             </View>
             <View style={styles.container}>
-                <Text style={styles.inputCodeText}>Input Code</Text>
-                <Text style={styles.inputCodeDescription}>We have sent the code to</Text>
-                <Text style={styles.inputCodeOTPType}>{email}</Text>
+                <Text style={styles.inputCodeText}>Make Your Security Code</Text>
+                <Text style={[styles.inputCodeDescription,{textAlign:"center"}]}>
+                    The security code is used to enter your account and make transactions
+                </Text>
                 <OTPInputView
                     style={styles.inputOTP}
-                    pinCount={4}
-                    code={verifyCode}
-                    onCodeChanged = {code => setVerifyCode(code)}
+                    pinCount={6}
+                    code={securityCode}
+                    onCodeChanged = {code => setSecurityCode(code)}
                     autoFocusOnLoad
-                    codeInputFieldStyle={styles.underlineStyleBase}
+                    codeInputFieldStyle={styles.underlineStyleBase2}
                     codeInputHighlightStyle={styles.underlineStyleHighLighted}
                     onCodeFilled = {(code => {
                         console.log(`Code is ${code}, you are good to go!`);
-                        props.navigation.navigate("CreateSecurityCode");
+                        // props.navigation.navigate("SuccessJoin");   //NewUser
+                        props.navigation.navigate("SecurityCode");  //ForgetPassword
                     })}
                 />
-                <TouchableOpacity>
-                    <Text style={styles.buttonSendAgain}>SEND AGAIN 
-                        <Text style={styles.timerColor}> ({timer})</Text>
-                    </Text>
-                </TouchableOpacity>
             </View>
         </>
     )
 }
 
-export default OTPEmail; 
+export default CreateSecurityCodeScreen; 

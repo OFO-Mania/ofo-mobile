@@ -1,31 +1,27 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-//Content OnBoarding Page
+//Screen OnBoarding Page
 // import Boarding from '../screens/OnBoardingScreen/Boarding';
 
-//Content Login & Sign Up
+//Screen Sign In
 import SignInScreen from '../screens/authScreen/SignInScreen';
+import OTPSignIn from '../screens/authScreen/OTPSignIn';
+import SecurityCodeScreen from '../screens/authScreen/SecurityCodeScreen';
+import OTPForgetSecurityCode from '../screens/authScreen/OTPForgetSecurityCode';
+
+//Screen Join
 import JoinScreen from '../screens/authScreen/JoinScreen';
 import TOSScreen from '../screens/authScreen/TOSScreen';
 import PrivacyPolicyScreen from '../screens/authScreen/PrivacyPolicyScreen';
+import HelpCenterScreen from '../screens/authScreen/HelpCenterScreen';
 import OTPPhone from '../screens/authScreen/OTPPhone';
 import OTPEmail from '../screens/authScreen/OTPEmail';
 import SuccessJoinScreen from '../screens/authScreen/SuccessJoinScreen';
-import SecurityCodeScreen from '../screens/authScreen/SecurityCodeScreen';
+import CreateSecurityCodeScreen from '../screens/authScreen/CreateSecurityCodeScreen';
 
-//App Tab Navigation
-// const AppStack = createStackNavigator(
-//     {
-//       TabNavigation,
-//       PersonalChatScreen,
-//       FriendProfileScreen
-//     },
-//     {
-//       initialRouteName: 'TabNavigation',
-//       headerMode: 'none',
-//     }
-// )
+//Screen App
+import TabNavigation from '../navigation/TabNavigation';
 
 //OnBoarding Navigation
 // const OnBoardingStack = createStackNavigator(
@@ -38,13 +34,24 @@ import SecurityCodeScreen from '../screens/authScreen/SecurityCodeScreen';
 //     }
 // )
 
-//OTP Switch Navigation
+//App Tab Navigation
+const AppStack = createStackNavigator(
+    {
+      TabNavigation,
+    },
+    {
+      initialRouteName: 'TabNavigation',
+      headerMode: 'none',
+    }
+)
+
+//OTP Join Switch Navigation
 const OTP = createSwitchNavigator(
   {
     OTPPhone: OTPPhone,
     OTPEmail: OTPEmail,
+    CreateSecurityCode: CreateSecurityCodeScreen,
     SuccessJoin: SuccessJoinScreen,
-    SecurityCode: SecurityCodeScreen
   },
   {
     initialRouteName: 'OTPPhone',
@@ -52,13 +59,29 @@ const OTP = createSwitchNavigator(
   }
 )
 
+//Sign In Navigation
+const SignInStack = createStackNavigator(
+  {
+    SignIn: SignInScreen,
+    OTPSignIn: OTPSignIn,
+    CreateSecurityCode: CreateSecurityCodeScreen,
+    SecurityCode: SecurityCodeScreen,
+    OTPForgetSecurityCode: OTPForgetSecurityCode
+  },
+  { 
+    initialRouteName: 'SignIn',
+    headerMode: 'none',
+  } 
+)
+
 //Auth Navigation
 const AuthStack = createStackNavigator(
   {
-    SignIn: SignInScreen,
+    SignIn: SignInStack,
     Join: JoinScreen,
     TOS: TOSScreen,
     Policy: PrivacyPolicyScreen,
+    HelpCenter: HelpCenterScreen,
     OTP: OTP,
   },
   {
@@ -71,12 +94,12 @@ const AuthStack = createStackNavigator(
 const AppNavigation = createSwitchNavigator(
   {
       //Loading: LoadingScreen,
-      //App: AppStack,
-      // Boarding: OnBoardingStack,
-        Auth: AuthStack
+      //Boarding: OnBoardingStack,
+      Auth: AuthStack,
+      App: AppStack,
   },
   {
-        initialRouteName: "Auth",
+        initialRouteName: "App",
         headerMode: 'none',
   }
 )
