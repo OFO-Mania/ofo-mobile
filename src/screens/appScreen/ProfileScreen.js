@@ -4,7 +4,7 @@ import styles from '../../styles/appScreen/StyleHeader';
 import stylesProfile from '../../styles/appScreen/StyleProfile';
 import { ListItem } from 'react-native-elements'
 
-const ProfileScreen = () => {
+const ProfileScreen = (props) => {
 
     const [fullname, setFullname] = useState("Aldo Ignata Chandra");
     const [phoneNumber, setPhoneNumber] = useState("081331994242");
@@ -62,11 +62,9 @@ const ProfileScreen = () => {
                 <View style={stylesProfile.containerHeaderProfile}>
                     <View style={stylesProfile.containerDataProfile}>
                         <View style={stylesProfile.containerFullname}>
-                            <TouchableOpacity>
-                                <Image
-                                    source={require('../../assets/images/imagesHome/IconTopUp.png')}
-                                    style={stylesProfile.imageProfile}/>
-                            </TouchableOpacity>
+                            <Image
+                                source={require('../../assets/images/imagesProfile/IconOFOPremier.png')}
+                                style={stylesProfile.imageProfile}/>
                         </View>
                         <View style={stylesProfile.containerPhoneNumber}>
                             <Text style={stylesProfile.fullname}>
@@ -123,7 +121,7 @@ const ProfileScreen = () => {
                 <View>
                 {
                     listMenuAccount.map((l, i) => (
-                        <TouchableOpacity key={i}>
+                        <TouchableOpacity key={i} onPress={() => l.menu === "Change Profile" ? props.navigation.navigate("EditProfile") : props.navigation.navigate("")}>
                             <ListItem
                                 containerStyle={{height:55}}
                                 leftAvatar={<Image source={l.icon} style={{width:25, height:25}}></Image>}

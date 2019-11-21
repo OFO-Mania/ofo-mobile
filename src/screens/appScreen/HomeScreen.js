@@ -119,7 +119,7 @@ const HomeScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={stylesHome.containerBoxSubMenu}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.navigation.navigate("PLNScreen")}>
                         <Image
                             source={require('../../assets/images/imagesHome/IconPLN.png')}
                             style={stylesHome.buttonImageMenu}

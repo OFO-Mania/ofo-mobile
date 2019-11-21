@@ -19,11 +19,11 @@ const DealsScreen = (props) => {
 
     const [carousel, setCarousel] = useState(null);
     const [bannerList, setBannerList] = useState([
-        { deals: require('../../assets/images/imagesDeals/Cashback1.jpg') },
-        { deals: require('../../assets/images/imagesDeals/Cashback2.jpg') },
-        { deals: require('../../assets/images/imagesDeals/Cashback3.jpg') },
-        { deals: require('../../assets/images/imagesDeals/Cashback4.jpg') },
-        { deals: require('../../assets/images/imagesDeals/Cashback5.jpg') },
+        { deals: require('../../assets/images/imagesDeals/Cashback1.jpg') , ID: 1},
+        { deals: require('../../assets/images/imagesDeals/Cashback2.jpg') , ID: 2},
+        { deals: require('../../assets/images/imagesDeals/Cashback3.jpg') , ID: 3},
+        { deals: require('../../assets/images/imagesDeals/Cashback4.jpg') , ID: 4},
+        { deals: require('../../assets/images/imagesDeals/Cashback5.jpg') , ID: 5},
     ]);
     const [happinessList, sethappinessList] = useState([
         { deals: require('../../assets/images/imagesDeals/Happiness1.jpg'), title:"A Placefull Place to Relax!", desc:"Pondok Sari Hotel", voucher:"5", price:"Rp 500.000" },
@@ -60,7 +60,7 @@ const DealsScreen = (props) => {
     const renderBannerDeals = ({item, index}) => {
         return (
             <View style={stylesDeals.containerBannerDeals}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate("DealsDetails")}>
                     <Image source={item.deals} style={stylesDeals.imageBannerDeals}/>
                 </TouchableOpacity>
             </View>
