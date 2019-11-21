@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ofoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ofoTests.m */; };
 		04E6A60630B5411C856A81B4 /* libPods-ofoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3EFF016FFAA383114A1663 /* libPods-ofoTests.a */; };
@@ -16,6 +15,7 @@
 		5504952E83724759B9760B8B /* Choplin-Medium-DEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */; };
 		A4D4146E2F3F488A92BF32F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B532CCD034667A3F7DA36 /* libz.tbd */; };
 		FCD4BFFA9DC479776E78D51A /* libPods-ofo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3E4AFD3C31574EA9006489 /* libPods-ofo.a */; };
+		5A26316F88D14E9487E6CBE7 /* Choplin_Medium_DEMO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEA43BC34DE546F09039056A /* Choplin_Medium_DEMO.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +66,7 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDA70777139ED715B08D77A1 /* Pods-ofo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofo.debug.xcconfig"; path = "Target Support Files/Pods-ofo/Pods-ofo.debug.xcconfig"; sourceTree = "<group>"; };
 		F0DAD7E2FF5F4D3BBB7D3D6F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		AEA43BC34DE546F09039056A /* Choplin_Medium_DEMO.ttf */ = {isa = PBXFileReference; name = "Choplin_Medium_DEMO.ttf"; path = "../src/assets/fonts/Choplin/Choplin_Medium_DEMO.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +141,7 @@
 				3C017060F6494C5895FA41F3 /* SimpleLineIcons.ttf */,
 				0EC69C6E67BF49138D7A3F10 /* Zocial.ttf */,
 				D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */,
+				AEA43BC34DE546F09039056A /* Choplin_Medium_DEMO.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -297,6 +299,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				5504952E83724759B9760B8B /* Choplin-Medium-DEMO.otf in Resources */,
+				5A26316F88D14E9487E6CBE7 /* Choplin_Medium_DEMO.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
