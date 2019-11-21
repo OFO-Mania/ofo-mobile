@@ -32,13 +32,14 @@ const FinanceScreen = () => {
                             </Text>
                         </View>
                         <View style={stylesFinance.textDiscription}>
-                            <Text style={{
-                                color:'white',
-                                fontSize:14
-                            }}>
-                                Get more than 7% ppa.{'     '}
+                            <Text style={{color:'white',fontSize:13}}>
+                                Get more than 7% ppa.
+                            </Text>
+                            <Text style={{color:'white',fontSize:13}}>
                                 Minimum investment of Rp 10.000.
-                                Withdraw anytime, {'       '}free of charge!
+                            </Text>
+                            <Text style={{color:'white',fontSize:13}}>
+                                Withdraw anytime, free of charge!
                             </Text>
                             <TouchableOpacity style={stylesFinance.buttonStart}>
                                 <Text style={stylesFinance.textButton}>
