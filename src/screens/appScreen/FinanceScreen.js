@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ImageBackground, Image, TouchableOpacity, Platform} from 'react-native';
+import { Text, View, ImageBackground, Image, TouchableOpacity, Platform } from 'react-native';
 import styles from '../../styles/appScreen/StyleHeader';
 import stylesFinance from '../../styles/appScreen/StyleFinance';
 
@@ -9,7 +9,7 @@ const FinanceScreen = () => {
             <View style={[styles.headerContainer, Platform.OS === 'ios' ? {
                 alignItems: 'center'
             } : {
-                alignItems: 'flex-start'
+                alignItems: "flex-start"
             }]}>
                 <Text style={[styles.headerSmallText, Platform.OS === 'ios' ? {
                     marginLeft: 0,
@@ -32,12 +32,13 @@ const FinanceScreen = () => {
                             </Text>
                         </View>
                         <View style={stylesFinance.textDiscription}>
-                            <Text style={{
-                                color:'white',
-                                fontSize:14
-                            }}>
+                            <Text style={{color:'white',fontSize:13}}>
                                 Get more than 7% ppa.
+                            </Text>
+                            <Text style={{color:'white',fontSize:13}}>
                                 Minimum investment of Rp 10.000.
+                            </Text>
+                            <Text style={{color:'white',fontSize:13}}>
                                 Withdraw anytime, free of charge!
                             </Text>
                             <TouchableOpacity style={stylesFinance.buttonStart}>
