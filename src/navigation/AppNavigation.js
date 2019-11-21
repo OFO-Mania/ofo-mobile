@@ -25,6 +25,9 @@ import TabNavigation from '../navigation/TabNavigation';
 import DealsDetails from '../screens/appScreen/DealsDetailsScreen';
 import EditProfile from '../screens/appScreen/EditProfileScreen';
 import PLNScreen from '../screens/appScreen/PLNScreen'
+import TopUpNavigation from './TopUpNavigation';
+import TransferNavigation from './TransferNavigation';
+import History from '../screens/appScreen/HistoryScreen';
 //OnBoarding Navigation
 // const OnBoardingStack = createStackNavigator(
 //     {
@@ -43,6 +46,9 @@ const AppStack = createStackNavigator(
       DealsDetails,
       EditProfile,
       PLNScreen
+      TopUpNavigation,
+      TransferNavigation,
+      History
     },
     {
       initialRouteName: 'TabNavigation',

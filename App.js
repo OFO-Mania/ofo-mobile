@@ -9,7 +9,6 @@ import OneSignal from 'react-native-onesignal';
 
 
 const App = () => {
-
 	const onOneSignalReceived = (notification) => {
 		console.log("Notification received: ", notification);
 	};

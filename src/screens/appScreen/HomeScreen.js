@@ -93,19 +93,25 @@ const HomeScreen = (props) => {
                     </Text>
                 </ImageBackground>
                 <View style={stylesHome.containerBoxMenu}>
-                    <TouchableOpacity>
+                    <TouchableOpacity 
+                        onPress={() => props.navigation.navigate('TopUpNavigation')}
+                    >
                         <Image
                             source={require('../../assets/images/imagesHome/IconTopUp.png')}
                             style={stylesHome.buttonImageMenu}
                             />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity 
+                        onPress={() => props.navigation.navigate('TransferNavigation')}
+                    >
                         <Image
                             source={require('../../assets/images/imagesHome/IconTransfer.png')}
                             style={stylesHome.buttonImageMenu}
                             />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => props.navigation.navigate('History')}
+                    >
                         <Image
                             source={require('../../assets/images/imagesHome/IconHistory.png')}
                             style={stylesHome.buttonImageMenu}
