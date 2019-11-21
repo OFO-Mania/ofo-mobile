@@ -34,7 +34,7 @@ const EditProfileScreen = (props) => {
                 </View>
                 <View style={StyleEditProfile.dataProfile}>
                     <Text style={StyleEditProfile.textFieldData}>
-                        Fulllname
+                        Full Name
                     </Text>
                     <Text style={StyleEditProfile.textSizeData}>
                         {fullname}
