@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ofoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ofoTests.m */; };
 		04E6A60630B5411C856A81B4 /* libPods-ofoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3EFF016FFAA383114A1663 /* libPods-ofoTests.a */; };
@@ -12,10 +13,13 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		46F1F9D6206EC58C2A2497B1 /* libPods-ofo-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC27387019B8D430DDDF613 /* libPods-ofo-OneSignalNotificationServiceExtension.a */; };
 		5504952E83724759B9760B8B /* Choplin-Medium-DEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */; };
-		A4D4146E2F3F488A92BF32F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B532CCD034667A3F7DA36 /* libz.tbd */; };
-		FCD4BFFA9DC479776E78D51A /* libPods-ofo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3E4AFD3C31574EA9006489 /* libPods-ofo.a */; };
 		5A26316F88D14E9487E6CBE7 /* Choplin_Medium_DEMO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEA43BC34DE546F09039056A /* Choplin_Medium_DEMO.ttf */; };
+		A4D4146E2F3F488A92BF32F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 791B532CCD034667A3F7DA36 /* libz.tbd */; };
+		EB1852382386607D00064906 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1852372386607D00064906 /* NotificationService.m */; };
+		EB18523C2386607D00064906 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EB1852342386607D00064906 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FCD4BFFA9DC479776E78D51A /* libPods-ofo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3E4AFD3C31574EA9006489 /* libPods-ofo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +30,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = ofo;
 		};
+		EB18523A2386607D00064906 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB1852332386607D00064906;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB1852402386607D00064906 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EB18523C2386607D00064906 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00192EE86D904423A560BD94 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -54,19 +79,28 @@
 		76E161039DD341BFB1FD6085 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		791B532CCD034667A3F7DA36 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7CEA09B519754141A6904E3F /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		91AB894CBD51683F9FEC2377 /* Pods-ofo-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofo-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-ofo-OneSignalNotificationServiceExtension/Pods-ofo-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		994DB2D1C14650CE2FC55533 /* Pods-ofoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofoTests.release.xcconfig"; path = "Target Support Files/Pods-ofoTests/Pods-ofoTests.release.xcconfig"; sourceTree = "<group>"; };
 		A0A1EA9472243BC4F085431B /* Pods-ofoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofoTests.debug.xcconfig"; path = "Target Support Files/Pods-ofoTests/Pods-ofoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ACCE5E16A2284C928C14B855 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		AEA43BC34DE546F09039056A /* Choplin_Medium_DEMO.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Choplin_Medium_DEMO.ttf; path = ../src/assets/fonts/Choplin/Choplin_Medium_DEMO.ttf; sourceTree = "<group>"; };
 		BC3EFF016FFAA383114A1663 /* libPods-ofoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ofoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC602F205CC64B1F96EC2299 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		C3E911C3D1974DDA536AF4F0 /* Pods-ofo-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofo-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-ofo-OneSignalNotificationServiceExtension/Pods-ofo-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		CDC27387019B8D430DDDF613 /* libPods-ofo-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ofo-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE34B6D88428479D9DFC0304 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		D90BCD0286EE470B8AFCE605 /* Choplin-Medium-DEMO.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Choplin-Medium-DEMO.otf"; path = "../src/assets/fonts/Choplin/Choplin-Medium-DEMO.otf"; sourceTree = "<group>"; };
 		E2CCAA3923B541C28114484C /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		EB18522F2386604300064906 /* OFO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = OFO.entitlements; path = ofo/OFO.entitlements; sourceTree = "<group>"; };
+		EB1852342386607D00064906 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB1852362386607D00064906 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		EB1852372386607D00064906 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		EB1852392386607D00064906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB1852412386612900064906 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDA70777139ED715B08D77A1 /* Pods-ofo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ofo.debug.xcconfig"; path = "Target Support Files/Pods-ofo/Pods-ofo.debug.xcconfig"; sourceTree = "<group>"; };
 		F0DAD7E2FF5F4D3BBB7D3D6F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		AEA43BC34DE546F09039056A /* Choplin_Medium_DEMO.ttf */ = {isa = PBXFileReference; name = "Choplin_Medium_DEMO.ttf"; path = "../src/assets/fonts/Choplin/Choplin_Medium_DEMO.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +118,14 @@
 			files = (
 				FCD4BFFA9DC479776E78D51A /* libPods-ofo.a in Frameworks */,
 				A4D4146E2F3F488A92BF32F0 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB1852312386607D00064906 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46F1F9D6206EC58C2A2497B1 /* libPods-ofo-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +152,7 @@
 		13B07FAE1A68108700A75B9A /* ofo */ = {
 			isa = PBXGroup;
 			children = (
+				EB18522F2386604300064906 /* OFO.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -154,6 +197,7 @@
 				6B3E4AFD3C31574EA9006489 /* libPods-ofo.a */,
 				BC3EFF016FFAA383114A1663 /* libPods-ofoTests.a */,
 				791B532CCD034667A3F7DA36 /* libz.tbd */,
+				CDC27387019B8D430DDDF613 /* libPods-ofo-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,6 +215,7 @@
 				13B07FAE1A68108700A75B9A /* ofo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ofoTests */,
+				EB1852352386607D00064906 /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				8C6A874A3F52A9552C4AEFB2 /* Pods */,
@@ -186,6 +231,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* OFO.app */,
 				00E356EE1AD99517003FC87E /* ofoTests.xctest */,
+				EB1852342386607D00064906 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,8 +243,21 @@
 				1082A250EE658215E9C00DC0 /* Pods-ofo.release.xcconfig */,
 				A0A1EA9472243BC4F085431B /* Pods-ofoTests.debug.xcconfig */,
 				994DB2D1C14650CE2FC55533 /* Pods-ofoTests.release.xcconfig */,
+				91AB894CBD51683F9FEC2377 /* Pods-ofo-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				C3E911C3D1974DDA536AF4F0 /* Pods-ofo-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EB1852352386607D00064906 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				EB1852412386612900064906 /* OneSignalNotificationServiceExtension.entitlements */,
+				EB1852362386607D00064906 /* NotificationService.h */,
+				EB1852372386607D00064906 /* NotificationService.m */,
+				EB1852392386607D00064906 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,15 +294,36 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				F6C992049E91464E69D5B781 /* [CP] Copy Pods Resources */,
 				492A59CF34314B3095D1575C /* Upload Debug Symbols to Sentry */,
+				EB1852402386607D00064906 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EB18523B2386607D00064906 /* PBXTargetDependency */,
 			);
 			name = ofo;
 			productName = ofo;
 			productReference = 13B07F961A680F5B00A75B9A /* OFO.app */;
 			productType = "com.apple.product-type.application";
+		};
+		EB1852332386607D00064906 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB18523D2386607D00064906 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				837362580C44CD4D3A65EF89 /* [CP] Check Pods Manifest.lock */,
+				EB1852302386607D00064906 /* Sources */,
+				EB1852312386607D00064906 /* Frameworks */,
+				EB1852322386607D00064906 /* Resources */,
+				3A572FB0CDDE952FCB89CAE4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = EB1852342386607D00064906 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -263,6 +343,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 8NTUXLX27L;
 					};
+					EB1852332386607D00064906 = {
+						CreatedOnToolsVersion = 11.2.1;
+						DevelopmentTeam = 8NTUXLX27L;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ofo" */;
@@ -280,6 +365,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* ofo */,
 				00E356ED1AD99517003FC87E /* ofoTests */,
+				EB1852332386607D00064906 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +386,13 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				5504952E83724759B9760B8B /* Choplin-Medium-DEMO.otf in Resources */,
 				5A26316F88D14E9487E6CBE7 /* Choplin_Medium_DEMO.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB1852322386607D00064906 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +457,54 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3A572FB0CDDE952FCB89CAE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ofo-OneSignalNotificationServiceExtension/Pods-ofo-OneSignalNotificationServiceExtension-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ofo-OneSignalNotificationServiceExtension/Pods-ofo-OneSignalNotificationServiceExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		492A59CF34314B3095D1575C /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +518,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+		};
+		837362580C44CD4D3A65EF89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ofo-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		F6C992049E91464E69D5B781 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -465,6 +628,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB1852302386607D00064906 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB1852382386607D00064906 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -472,6 +643,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* ofo */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		EB18523B2386607D00064906 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB1852332386607D00064906 /* OneSignalNotificationServiceExtension */;
+			targetProxy = EB18523A2386607D00064906 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -548,6 +724,7 @@
 			baseConfigurationReference = EDA70777139ED715B08D77A1 /* Pods-ofo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ofo/OFO.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 8NTUXLX27L;
@@ -569,6 +746,7 @@
 			baseConfigurationReference = 1082A250EE658215E9C00DC0 /* Pods-ofo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ofo/OFO.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8NTUXLX27L;
 				INFOPLIST_FILE = ofo/Info.plist;
@@ -685,6 +863,60 @@
 			};
 			name = Release;
 		};
+		EB18523E2386607D00064906 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91AB894CBD51683F9FEC2377 /* Pods-ofo-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8NTUXLX27L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.ofomania.ofomobile.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB18523F2386607D00064906 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3E911C3D1974DDA536AF4F0 /* Pods-ofo-OneSignalNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8NTUXLX27L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.ofomania.ofomobile.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -711,6 +943,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB18523D2386607D00064906 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB18523E2386607D00064906 /* Debug */,
+				EB18523F2386607D00064906 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
