@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         height:56,
         width:"100%",
         backgroundColor:"#4D2A86",
-        justifyContent:"center"
+        justifyContent:"center",
     },
     headerText: {
         fontFamily: "Choplin-Medium-DEMO",

@@ -60,7 +60,7 @@ const HomeScreen = (props) => {
             <View style={[styles.headerContainer, Platform.OS === 'ios' ? {
                 alignItems: 'center'
             } : {
-                alignItems: 'start'
+                alignItems: 'flex-start'
             }]}>
                 <Text style={[styles.headerText, Platform.OS === 'ios' ? {
                     marginLeft: 0,
