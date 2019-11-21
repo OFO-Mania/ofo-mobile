@@ -1,4 +1,4 @@
-import { StyleSheet } from  'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         justifyContent:"center"
     },
     headerText: {
-        fontFamily: "Choplin-Medium-DEMO",
+        fontFamily: Platform.OS === "ios" ? "Choplin-Medium-DEMO" : "Choplin_Medium_DEMO",
         color:"white",
         fontWeight:"bold",
         fontSize:25,
