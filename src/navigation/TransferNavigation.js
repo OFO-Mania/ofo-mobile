@@ -17,7 +17,7 @@ const TransferNav = createMaterialTopTabNavigator(
         TransferFavorit: { 
             screen: TransferFavorit, 
             navigationOptions: {
-                tabBarLabel: 'Favorit',
+                tabBarLabel: 'Favourite',
             }
         },
     },

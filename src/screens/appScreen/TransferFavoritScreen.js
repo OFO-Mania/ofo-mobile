@@ -24,7 +24,7 @@ const TransferFavorit = () => {
                             alignSelf:'center',
                             color:'grey'
                         }}>
-                        You didn't have favorit list yet
+                        You do not have favourite list yet
                     </Text>
                 </View>
             </ScrollView>
