@@ -45,7 +45,7 @@ const AppStack = createStackNavigator(
       TabNavigation,
       DealsDetails,
       EditProfile,
-      PLNScreen
+      PLNScreen,
       TopUpNavigation,
       TransferNavigation,
       History
