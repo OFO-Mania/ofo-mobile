@@ -22,7 +22,9 @@ import CreateSecurityCodeScreen from '../screens/authScreen/CreateSecurityCodeSc
 
 //Screen App
 import TabNavigation from '../navigation/TabNavigation';
-
+import TopUpNavigation from './TopUpNavigation';
+import TransferNavigation from './TransferNavigation';
+import History from '../screens/appScreen/HistoryScreen';
 //OnBoarding Navigation
 // const OnBoardingStack = createStackNavigator(
 //     {
@@ -38,6 +40,9 @@ import TabNavigation from '../navigation/TabNavigation';
 const AppStack = createStackNavigator(
     {
       TabNavigation,
+      TopUpNavigation,
+      TransferNavigation,
+      History
     },
     {
       initialRouteName: 'TabNavigation',

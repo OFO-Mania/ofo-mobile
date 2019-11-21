@@ -13,7 +13,7 @@ const App = () => {
     <>
       <View style={{
           backgroundColor: '#4D2A88',
-          height: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
+          height: Platform.OS === 'ios' ? 20 : 0,
       }}>
         <StatusBar backgroundColor="#4D2A88" barStyle="light-content" />
       </View>
