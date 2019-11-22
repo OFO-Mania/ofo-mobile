@@ -3,11 +3,15 @@ import { Platform, Text, View, ScrollView, TouchableOpacity, Image, ImageBackgro
 import styles from '../../styles/appScreen/StyleHeader';
 import stylesProfile from '../../styles/appScreen/StyleProfile';
 import { ListItem } from 'react-native-elements'
+import StylePLN from '../../styles/appScreen/StylePLN';
+import Modal from "react-native-modal";
 
 const ProfileScreen = (props) => {
 
     const [fullname, setFullname] = useState("Aldo Ignata Chandra");
     const [phoneNumber, setPhoneNumber] = useState("081331994242");
+    const [SignOutModal, setSignOutModal] = useState(false);
+
 
     const listMenuAccount = [
         {
@@ -172,13 +176,34 @@ const ProfileScreen = (props) => {
                     <Text style={stylesProfile.footerText}>#DontUseDANAIN</Text>
                     <Text style={stylesProfile.footerText}>#DontUseLinkWae</Text>
                     <Text style={[stylesProfile.footerText, {marginBottom:20}]}>#JustUseOFO!</Text>
-                    <TouchableOpacity style={stylesProfile.buttonSignOut}>
+                    <TouchableOpacity style={stylesProfile.buttonSignOut} onPress={() => setSignOutModal(true)}>
                         <Text style={stylesProfile.textSignOut}>
                             Sign Out
                         </Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
+            {/* Sign Out Modal */}
+            <View style={{ flex: 1 }}>
+                <Modal isVisible={SignOutModal}>
+                <View style={[StylePLN.containerModal,{height:250}]}>
+                    <Text style={{marginHorizontal:20 ,color:"#4D2A86", fontWeight:"bold", fontSize:20, marginTop:20}}>Sign Out?</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontSize:16, marginTop:15}}>Are you sure want to Sign Out?</Text>
+                    <View style={{flexDirection:'column', justifyContent:"center", marginTop:-10}}>
+                        <TouchableOpacity style={[StylePLN.buttonConfirm,{marginTop:50, width:"90%",height:45, borderRadius:30}]} onPress={() => props.navigation.navigate('Auth')}>
+                            <Text style={StylePLN.textConfirm}>
+                                OKE
+                            </Text>
+                        </TouchableOpacity>  
+                        <TouchableOpacity style={[StylePLN.buttonCancel,{marginTop:20, width:"90%", height:45, borderRadius:30,borderColor:'white'}]} onPress={() => setSignOutModal(false)}>
+                            <Text style={StylePLN.textCancel}>
+                                CANCEL
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                </Modal>
+            </View>
         </>
     )
 }
