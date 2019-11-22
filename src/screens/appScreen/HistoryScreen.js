@@ -3,8 +3,6 @@ import { Platform,Text, View, ScrollView, } from 'react-native';
 import { Divider } from 'react-native-elements';
 import styles from '../../styles/appScreen/StyleHeader';
 
-
-
 const TopUpScreen = () => {
     return (
         <>
@@ -17,7 +15,7 @@ const TopUpScreen = () => {
                     marginLeft: 0,
                 } : {
                     marginLeft: 20
-                }]}>
+                },{fontWeight:"100"}]}>
                     History
                 </Text>
             </View>

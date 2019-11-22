@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createAppContainer} from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from "react-navigation-stack";  
@@ -11,7 +12,7 @@ const TopUpNav = createMaterialTopTabNavigator(
         TopUpScreen: { 
             screen: TopUpScreen,
             navigationOptions: {
-                tabBarLabel: 'Top Up',
+                tabBarLabel: 'Instant Top Up',
             }
         },
         TopUpAnotherScreen: { 
@@ -54,7 +55,8 @@ const TopUpNav = createMaterialTopTabNavigator(
         headerTintColor: '#FFFFFF',
         title: 'Top Up',
         headerTitleContainerStyle:{
-            marginLeft:30
+            marginHorizontal:10,
+            justifyContent: Platform.OS === "ios" ? "center" : "flex-start"
         }
       },
     },

@@ -1,9 +1,6 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-//Screen OnBoarding Page
-// import Boarding from '../screens/OnBoardingScreen/Boarding';
-
 //Screen Sign In
 import SignInScreen from '../screens/authScreen/SignInScreen';
 import OTPSignIn from '../screens/authScreen/OTPSignIn';
@@ -28,16 +25,10 @@ import PLNScreen from '../screens/appScreen/PLNScreen'
 import TopUpNavigation from './TopUpNavigation';
 import TransferNavigation from './TransferNavigation';
 import History from '../screens/appScreen/HistoryScreen';
-//OnBoarding Navigation
-// const OnBoardingStack = createStackNavigator(
-//     {
-//       Boarding: Boarding
-//     },
-//     {
-//       initialRouteName: 'Boarding',
-//       headerMode: 'none',
-//     }
-// )
+
+//Screen Transfer New
+import TransferToOFOUser from '../screens/appScreen/TransferToOFOUserScreen';
+import TransferToBankAccount from '../screens/appScreen/TransferToBankAccountScreen';
 
 //App Tab Navigation
 const AppStack = createStackNavigator(
@@ -48,6 +39,8 @@ const AppStack = createStackNavigator(
       PLNScreen,
       TopUpNavigation,
       TransferNavigation,
+      TransferToOFOUser,
+      TransferToBankAccount,
       History
     },
     {
@@ -104,13 +97,11 @@ const AuthStack = createStackNavigator(
 //App Navigation
 const AppNavigation = createSwitchNavigator(
   {
-      //Loading: LoadingScreen,
-      //Boarding: OnBoardingStack,
       Auth: AuthStack,
       App: AppStack,
   },
   {
-        initialRouteName: "App",
+        initialRouteName: "Auth",
         headerMode: 'none',
   }
 )

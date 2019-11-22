@@ -3,8 +3,7 @@ import { Platform, Text, View, Image, TouchableOpacity, ScrollView, TextInput } 
 import styles from '../../styles/appScreen/StyleHeader';
 import { ListItem, Divider } from 'react-native-elements';
 
-
-const TransferNew = () => {
+const TransferNew = (props) => {
     const listMethod = [
         {
             name: 'Debit Card',
@@ -43,29 +42,33 @@ const TransferNew = () => {
                     flex:1,
                     backgroundColor: "#F8F8F8"
                 }}>
-                    <ListItem
-                        containerStyle={{
-                            height: 80,
-                            width: '90%',
-                            marginTop: 30,
-                            alignSelf: 'center',
-                        }}
-                        leftAvatar={<Image source={require('../../assets/images/imagesHome/Transfer/IconToOFO.png')} style={{ width: 25, height: 25 }}></Image>}
-                        title='OFO to OFO'
-                        chevron={{ color: '#8A8F92', size: 20 }}
-                    />
-                    <ListItem
-                        containerStyle={{
-                            height: 80,
-                            width: '90%',
-                            marginTop: 15,
-                            alignSelf: 'center',
-                            marginBottom:30,
-                        }}
-                        leftAvatar={<Image source={require('../../assets/images/imagesHome/Transfer/IconToBank.png')} style={{ width: 25, height: 25 }}></Image>}
-                        title='To Bank Account'
-                        chevron={{ color: '#8A8F92', size: 20 }}
-                    />
+                    <TouchableOpacity onPress={() => props.navigation.navigate("TransferToOFOUser")}>
+                        <ListItem
+                            containerStyle={{
+                                height: 80,
+                                width: '90%',
+                                marginTop: 30,
+                                alignSelf: 'center',
+                            }}
+                            leftAvatar={<Image source={require('../../assets/images/imagesHome/Transfer/IconToOFO.png')} style={{ width: 25, height: 25 }}></Image>}
+                            title='To OFO User'
+                            chevron={{ color: '#8A8F92', size: 20 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.navigation.navigate("TransferToBankAccount")}>
+                        <ListItem
+                            containerStyle={{
+                                height: 80,
+                                width: '90%',
+                                marginTop: 15,
+                                alignSelf: 'center',
+                                marginBottom:30,
+                            }}
+                            leftAvatar={<Image source={require('../../assets/images/imagesHome/Transfer/IconToBank.png')} style={{ width: 25, height: 25 }}></Image>}
+                            title='To Bank Account'
+                            chevron={{ color: '#8A8F92', size: 20 }}
+                        />
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <Text style={{

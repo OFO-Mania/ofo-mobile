@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     divider: {
-        alignSelf:"center",
-        opacity:0.1,
-        fontSize:40, 
-        marginTop:-20
+        height:1, 
+        width:"90%", 
+        borderBottomWidth:2, 
+        borderBottomColor:"grey", 
+        alignSelf:"center", 
+        marginVertical:15
     },
     imageMerchant: {
         height:50,
