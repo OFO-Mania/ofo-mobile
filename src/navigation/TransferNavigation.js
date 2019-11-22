@@ -51,9 +51,10 @@ const TransferNav = createMaterialTopTabNavigator(
           backgroundColor: '#4D2A86',
         },
         headerTintColor: '#FFFFFF',
-        title: 'TRANSFER',
+        title: 'Transfer',
         headerTitleContainerStyle:{
-            marginLeft:30
+            marginHorizontal:10,
+            justifyContent: Platform.OS === "ios" ? "center" : "flex-start"
         }
       },
     },

@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform, Text, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import styles from '../../styles/appScreen/StyleHeader';
+import StylePLN from '../../styles/appScreen/StylePLN';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Modal from "react-native-modal";
 
+const TopUpScreen = (props) => {
 
-const TopUpScreen = () => {
+    const [amount, setAmount] = useState("");
+    const [checkButton, setCheckButton] = useState(true);
+    const [topUpConfirmModal, setTopUpConfirmModal] = useState(false);
+    const [topUpModal, setTopUpModal] = useState(false);
+
+    const [status, setStatus] = useState(true)
+    const [noRef, setNoRef] = useState("21000-20191122105123-315694-00000CIM-00000");
+    const [message, setMessage] = useState("Top Up Success")
+
+    useEffect(() => {
+        if (amount === "") {
+            setCheckButton(true);
+        } else {
+            setCheckButton(false);
+        }
+
+    },[amount]);
+
     return (
         <>
             <ScrollView>
@@ -27,13 +48,8 @@ const TopUpScreen = () => {
                         height: 75,
                         borderRadius: 12,
                         marginTop: 10,
-                        // marginLeft: 15,
                         borderWidth: 0.2,
                         borderColor: 'grey',
-                        shadowColor: 'black',
-                        shadowRadius: 20,
-                        shadowOpacity: 1,
-                        shadowOffset: 5,
                     }} >
                         <View style={{
                             backgroundColor:'#4D2A86',
@@ -94,7 +110,9 @@ const TopUpScreen = () => {
                             marginTop: 10,
                             height: 50
                         }} >
-                        <TouchableOpacity style={{
+                        <TouchableOpacity 
+                        onPress={() => setAmount("100000")}
+                        style={{
                             borderWidth: 0.2,
                             borderRadius: 30,
                             borderColor: 'grey',
@@ -109,7 +127,9 @@ const TopUpScreen = () => {
                                 Rp100.000
                                 </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{
+                        <TouchableOpacity 
+                        onPress={() => setAmount("200000")}
+                        style={{
                             borderWidth: 0.2,
                             borderRadius: 30,
                             borderColor: 'grey',
@@ -124,7 +144,9 @@ const TopUpScreen = () => {
                                 Rp200.000
                                 </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{
+                        <TouchableOpacity 
+                        onPress={() => setAmount("500000")}
+                        style={{
                             borderWidth: 0.2,
                             borderRadius: 30,
                             borderColor: 'grey',
@@ -140,7 +162,7 @@ const TopUpScreen = () => {
                                 Rp500.000
                                 </Text>
                         </TouchableOpacity>
-                    </ScrollView>
+                </ScrollView>
                     <View>
                         <Text style={{
                             marginTop: -90,
@@ -152,7 +174,8 @@ const TopUpScreen = () => {
                         <TextInput
                             placeholder='Minimum Rp10.000'
                             keyboardType='number-pad'
-                            
+                            onChangeText={amount => setAmount(amount)}
+                            value={amount}
                             style={{
                                 backgroundColor: '#F4F4F4',
                                 width: '93%',
@@ -185,6 +208,20 @@ const TopUpScreen = () => {
                     }}>
                         Debit Card
                     </Text>
+                    <ScrollView horizontal > 
+                    <TouchableOpacity style={{
+                        flexDirection: 'column',
+                        width: 300,
+                        height: 150,
+                        borderRadius: 12,
+                        marginTop: 10,
+                        marginLeft: 15,
+                    }} >
+                        <Image
+                            source={require('../../assets/images/imagesHome/TopUp/DebitBCA.png')}
+                            style={{ width: '100%', height:'100%'}}
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity style={{
                         flexDirection: 'column',
                         width: 300,
@@ -209,40 +246,101 @@ const TopUpScreen = () => {
 
                         </View>
                     </TouchableOpacity>
+                    </ScrollView>
+                    
                 </View>
-                </ScrollView>
-                <View style={{
-                    backgroundColor: 'white',
-                    width: '100%',
-                    height: 70,
-                    justifyContent:'center',
-                    position:'absolute',
-                    bottom:0,
-                    borderTopColor:'grey',
-                    borderTopWidth:0.5,
-                }}>
-                    <TouchableOpacity style={{
-                        width:'90%',
-                        backgroundColor: '#DEE0E2',
-                        alignItems:'center',
-                        alignContent:'center',
-                        height:45,
-                        alignSelf:'center',
-                        borderRadius:20,
-                        justifyContent:'center'
+                <View style={{height:100}}/>
+            </ScrollView>
+            <View style={{
+                backgroundColor: 'white',
+                width: '100%',
+                height: 70,
+                justifyContent:'center',
+                position:'absolute',
+                bottom:0,
+                borderTopColor:'grey',
+                borderTopWidth:0.5,
+            }}>
+                <TouchableOpacity 
+                onPress={() => setTopUpConfirmModal(true)}
+                disabled={checkButton}
+                style={{
+                    width:'90%',
+                    backgroundColor: amount === "" ? '#DEE0E2' : '#06B3BA',
+                    alignItems:'center',
+                    alignContent:'center',
+                    height:45,
+                    alignSelf:'center',
+                    borderRadius:20,
+                    justifyContent:'center'
 
+                }}>
+                    <Text style={{
+                        fontSize:20,
+                        fontWeight:'bold',
+                        color:'white'
+                        
                     }}>
-                        <Text style={{
-                            fontSize:20,
-                            fontWeight:'bold',
-                            color:'white'
-                            
-                        }}>
-                            Top Up Now
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-              
+                        Top Up Now
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            
+            {/* Modal Confirm Top Up */}
+            <View style={{ flex: 1 }}>
+                <Modal isVisible={topUpConfirmModal}>
+                <View style={[StylePLN.containerModal,{height:300}]}>
+                    <Text style={{marginHorizontal:20 ,color:"#4D2A86", fontWeight:"bold", fontSize:20, marginTop:10}}>Top Up Confirmation</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Top Up From</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>BCA - One Click</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>To</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>OFO Cash</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Top Up Balance</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>{amount}</Text>
+                    <View style={{flexDirection:"row", justifyContent:"center"}}>  
+                        <TouchableOpacity style={[StylePLN.buttonCancel,{marginTop:50, width:"45%"}]} onPress={() => setTopUpConfirmModal(false)}>
+                            <Text style={StylePLN.textCancel}>
+                                Cancel
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[StylePLN.buttonConfirm,{marginTop:50, width:"45%", marginLeft:10}]} onPress={() => (setTopUpModal(true),setTopUpConfirmModal(false))}>
+                            <Text style={StylePLN.textConfirm}>
+                                Confirm
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                </Modal>
+            </View>
+
+            {/* Modal Result Top Up */}
+            <View style={{ flex: 1 }}>
+                <Modal isVisible={topUpModal}>
+                    <View style={[StylePLN.containerModal,{height:400}]}>
+                    <Text style={{marginHorizontal:20 ,color:"#4D2A86", fontWeight:"bold", fontSize:20, marginTop:10}}>Top Up Status</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Top Up Status</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17, fontWeight:"bold", 
+                        color: status ? "green" : "red" }}>
+                        {status ? "Success" : "Failed"}
+                    </Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Top Up From</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>Transfer From BANK BCA</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>No. Ref</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>
+                        {status ? noRef : "-"}
+                    </Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>To</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>OFO Cash</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Message</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontWeight:"100", fontSize:17}}>{message}</Text>
+                        <TouchableOpacity style={[StylePLN.buttonConfirm,{marginTop:25}]} onPress={() => setTopUpModal(false)}>
+                            <Text style={StylePLN.textConfirm}>
+                                Okay
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+            </View>
         </>
     )
 }

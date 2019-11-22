@@ -34,9 +34,7 @@ const DealsDetailsScreen = (props) => {
                             <Text style={StyleDealsDetail.textPromoTitle}>
                                 {promoTitle}
                             </Text>
-                            <Text style={StyleDealsDetail.divider}>
-                                ---------------------------
-                            </Text>
+                            <View style={StyleDealsDetail.divider} />
                             <View style={StyleDealsDetail.containerPromoStatus}>
                                 <Text style={{fontSize:14}}>Valid until</Text>
                                 <Text style={{fontSize:14}}>{promoPeriod}</Text>
