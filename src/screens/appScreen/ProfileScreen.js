@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     Platform,
     Text,
@@ -9,8 +9,10 @@ import {
     ImageBackground,
     ActivityIndicator,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import styles from '../../styles/appScreen/StyleHeader';
 import stylesProfile from '../../styles/appScreen/StyleProfile';
+import StylePLN from '../../styles/appScreen/StylePLN';
 import { ListItem } from 'react-native-elements'
 import {useDispatch, useSelector} from 'react-redux';
 import {deauthenticate} from '../../actions/user';
@@ -21,6 +23,7 @@ import Toast from 'react-native-simple-toast';
 import {useLoading} from '../../core/hook';
 
 const ProfileScreen = ({navigation}) => {
+    const [SignOutModal, setSignOutModal] = useState(false);
     const accessToken = useSelector(state => state.root.accessToken);
     const user = useSelector(state => state.user.authenticatedUser);
     const [loading, showLoading, hideLoading] = useLoading();
@@ -207,7 +210,7 @@ const ProfileScreen = ({navigation}) => {
                     <Text style={stylesProfile.footerText}>#DontUseDANAIN</Text>
                     <Text style={stylesProfile.footerText}>#DontUseLinkWae</Text>
                     <Text style={[stylesProfile.footerText, {marginBottom:20}]}>#JustUseOFO!</Text>
-                    <TouchableOpacity style={stylesProfile.buttonSignOut} onPress={onSignOut}>
+                    <TouchableOpacity style={stylesProfile.buttonSignOut} onPress={() => setSignOutModal(true)}>
                         {
                             loading ? <ActivityIndicator color="#06B3BA" /> : <Text style={stylesProfile.textSignOut}>
                                 Sign Out
@@ -221,13 +224,13 @@ const ProfileScreen = ({navigation}) => {
                 <Modal isVisible={SignOutModal}>
                 <View style={[StylePLN.containerModal,{height:250}]}>
                     <Text style={{marginHorizontal:20 ,color:"#4D2A86", fontWeight:"bold", fontSize:20, marginTop:20}}>Sign Out?</Text>
-                    <Text style={{marginHorizontal:20 ,color:"black", fontSize:16, marginTop:15}}>Are you sure want to Sign Out?</Text>
+                    <Text style={{marginHorizontal:20 ,color:"black", fontSize:16, marginTop:15}}>Are you sure want to sign out?</Text>
                     <View style={{flexDirection:'column', justifyContent:"center", marginTop:-10}}>
-                        <TouchableOpacity style={[StylePLN.buttonConfirm,{marginTop:50, width:"90%",height:45, borderRadius:30}]} onPress={() => props.navigation.navigate('Auth')}>
+                        <TouchableOpacity style={[StylePLN.buttonConfirm,{marginTop:50, width:"90%",height:45, borderRadius:30}]} onPress={onSignOut}>
                             <Text style={StylePLN.textConfirm}>
-                                OKE
+                                OKAY
                             </Text>
-                        </TouchableOpacity>  
+                        </TouchableOpacity>
                         <TouchableOpacity style={[StylePLN.buttonCancel,{marginTop:20, width:"90%", height:45, borderRadius:30,borderColor:'white'}]} onPress={() => setSignOutModal(false)}>
                             <Text style={StylePLN.textCancel}>
                                 CANCEL
