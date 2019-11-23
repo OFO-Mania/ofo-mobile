@@ -7,7 +7,7 @@ import {setIsNewUser} from '../../actions';
 const SuccessJoinScreen = (props) => {
 
     const [changeView, setChangeView] = useState(true);
-    const fullName = useSelector(state => state.user.authenticatedUser.fullName);
+    const fullName = useSelector(state => state.user.authenticatedUser !== null ? state.user.authenticatedUser.fullName : '');
     const dispatch = useDispatch();
 
     useEffect(() => {
