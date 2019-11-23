@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Dimensions,
     Text,
@@ -13,29 +13,47 @@ import {
 import styles from '../../styles/appScreen/StyleHeader';
 import stylesHome from '../../styles/appScreen/StyleHome';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProfile} from '../../services/Profile';
+import {acc} from 'react-native-reanimated';
+import {authenticate} from '../../actions/user';
+import Toast from 'react-native-simple-toast';
+import {getDeals} from '../../services/DealAPI';
 
 const HomeScreen = (props) => {
 
-    const [cash, setash] = useState("0");
-    const [points, setPoints] = useState("6.900");
+    const accessToken = useSelector(state => state.root.accessToken);
+    const user = useSelector(state => state.user.authenticatedUser);
+    const dispatch = useDispatch();
+
     const [carousel, setCarousel] = useState(null);
-    const [bannerList, setBannerList] = useState([
-        { banner: require('../../assets/images/imagesHome/Deal1.jpg') },
-        { banner: require('../../assets/images/imagesHome/Deal2.jpg') },
-        { banner: require('../../assets/images/imagesHome/Deal3.jpg') },
-        { banner: require('../../assets/images/imagesHome/Deal4.jpg') },
-        { banner: require('../../assets/images/imagesHome/Deal5.jpg') },
-        { banner: require('../../assets/images/imagesHome/Deal6.jpg') }
-    ]);
+    const [deals, setDeals] = useState([]);
     const [activeSlide, setActiveSlide] = useState(0);
     const [refreshing, setRefreshing] = useState(false);
 
-    const onRefresh = () => {
+    const refreshDeals = async () => {
+        try {
+            const { data } = await getDeals(accessToken);
+            setDeals(data.deals);
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        }
+    };
+
+    const refreshProfile = async () => {
+        try {
+            const { data } = await getProfile(accessToken);
+            dispatch(authenticate(data));
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        }
+    };
+
+    const onRefresh = async () => {
         setRefreshing(true);
-        const timeout = setTimeout(() => {
-            setRefreshing(false);
-            clearTimeout(timeout);
-        }, 3000);
+        await refreshProfile();
+        await refreshDeals();
+        setRefreshing(false);
     };
 
     const renderBanner = ({item, index}) => {
@@ -47,13 +65,13 @@ const HomeScreen = (props) => {
                 }}>
                 <TouchableOpacity>
                     <Image
-                        source={item.banner}
+                        source={{ uri: item.image }}
                         style={stylesHome.imageBanner}
                     />
                 </TouchableOpacity>
             </View>
         );
-    }
+    };
 
     return (
         <>
@@ -86,14 +104,14 @@ const HomeScreen = (props) => {
                 >
                     <Text style={stylesHome.textOFO}>OFO Cash</Text>
                     <Text style={stylesHome.textRp}>Rp
-                        <Text style={stylesHome.textCash}> {cash}</Text>
+                        <Text style={stylesHome.textCash}> {user.current_cash}</Text>
                     </Text>
                     <Text style={stylesHome.textOFOPoint}>
-                        OFO Points <Text style={{color:"#FFB819"}}>{points}</Text>
+                        OFO Points <Text style={{color:"#FFB819"}}>{user.current_point}</Text>
                     </Text>
                 </ImageBackground>
                 <View style={stylesHome.containerBoxMenu}>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         onPress={() => props.navigation.navigate('TopUpNavigation')}
                     >
                         <Image
@@ -101,7 +119,7 @@ const HomeScreen = (props) => {
                             style={stylesHome.buttonImageMenu}
                             />
                     </TouchableOpacity>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         onPress={() => props.navigation.navigate('TransferNavigation')}
                     >
                         <Image
@@ -187,7 +205,7 @@ const HomeScreen = (props) => {
                 </View>
                 <Carousel
                     ref={setCarousel}
-                    data={bannerList}
+                    data={deals}
                     renderItem={renderBanner}
                     sliderWidth={Dimensions.get("window").width}
                     itemWidth={Dimensions.get("window").width * 0.85}
@@ -195,7 +213,7 @@ const HomeScreen = (props) => {
                     inactiveSlideScale={1}
                 />
                 <Pagination
-                    dotsLength={bannerList.length}
+                    dotsLength={deals.length}
                     activeDotIndex={activeSlide}
                     dotStyle={stylesHome.dotStyles}
                     inactiveDotStyle={stylesHome.dotInactiveStyles}

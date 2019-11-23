@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, Picker, TouchableOpacity, Button } from "react-native";
+import {View, Text, Image, ScrollView, Picker, TouchableOpacity, Button, ActivityIndicator} from 'react-native';
 import { Input } from 'react-native-elements';
 import styles from '../../styles/appScreen/StyleHeader';
 import StylePLN from '../../styles/appScreen/StylePLN';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from "react-native-modal";
 import { Divider } from 'react-native-elements';
+import Toast from 'react-native-simple-toast';
+import {
+    confirmTransferToBank,
+    confirmTransferToUser,
+    inquiryTransferToBank,
+    inquiryTransferToUser,
+} from '../../services/TransactionAPI';
+import {authenticate} from '../../actions/user';
+import {useDispatch, useSelector} from 'react-redux';
+import {useLoading} from '../../core/hook';
 
 const TransferToBankAccountScreen = (props) => {
+    const accessToken = useSelector(state => state.root.accessToken);
+    const user = useSelector(state => state.user.authenticatedUser);
+    const [loading, setLoading, hideLoading] = useLoading();
+    const dispatch = useDispatch();
 
     const [checkButton, setCheckButton] = useState(true);
     const [accountNumber, setAccountNumber] = useState("");
@@ -17,13 +31,48 @@ const TransferToBankAccountScreen = (props) => {
     const [totalTransfer, setTotalTransfer] = useState("");
 
     //Receiver Transfer
-    const [receiverID, setReceiverID] = useState("Aldo Ignata Chandra");
-    const [receiverBank, setReceiverBank] = useState("BANK BTPN");
-    const [receiverAccount, setReceiverAccount] = useState("90012875699");
+    const [receiverName, setReceiverName] = useState("");
+    const [receiverBank, setReceiverBank] = useState('');
+    const [receiverAccount, setReceiverAccount] = useState("");
+    const [bankAccountID, setBankAccountID] = useState('');
+
+    const doInquiryTransfer = async () => {
+        if (parseInt(balance) < 10000) {
+            Toast.showWithGravity('Minimal transfer amount is Rp 10.000.', Toast.LONG, Toast.TOP);
+            return;
+        }
+        try {
+            setLoading();
+            const { data } = await inquiryTransferToBank(accessToken, accountNumber);
+            setReceiverName(data.bankAccount.name);
+            setReceiverAccount(data.bankAccount.account_number);
+            setReceiverBank(data.bankAccount.bank);
+            setBankAccountID(data.bankAccount.bank_account_id);
+            setTransferModal(true);
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        } finally {
+            hideLoading();
+        }
+    };
+
+    const doConfirmTransfer = async () => {
+        try {
+            setLoading();
+            const { data } = await confirmTransferToBank(accessToken, bankAccountID, totalTransfer, message);
+            setTransferModal(false);
+            Toast.showWithGravity('Transfer successful.', Toast.LONG, Toast.TOP);
+            dispatch(authenticate(data.user));
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        } finally {
+            hideLoading();
+        }
+    };
 
     useEffect(() => {
         setTotalTransfer(parseInt(balance) + 2000);
-        
+
         if (accountNumber !== "" && balance !== "") {
             setCheckButton(false);
         } else {
@@ -41,11 +90,11 @@ const TransferToBankAccountScreen = (props) => {
                     flexDirection:'row',
                     alignItems:'center'
                 }}>
-                <Icon 
-                    style={{marginLeft:20}} 
-                    name='chevron-left' 
-                    size={24} 
-                    color='white' 
+                <Icon
+                    style={{marginLeft:20}}
+                    name='chevron-left'
+                    size={24}
+                    color='white'
                     onPress={() => props.navigation.navigate("TransferNavigation")}
                 />
                 <Text style={styles.headerSmallText}>
@@ -60,9 +109,10 @@ const TransferToBankAccountScreen = (props) => {
                     alignItems:'center'
                 }}>
                     <Input
+                        editable={!loading}
                         label={accountNumber === "" ? "" : "Enter Account Number"}
-                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
-                        inputStyle={{width:10, marginBottom:-10}}    
+                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}}
+                        inputStyle={{width:10, marginBottom:-10}}
                         inputContainerStyle={{width:'87%', alignSelf:'center', marginTop:-10}}
                         placeholderTextColor="grey"
                         placeholder='Enter Account Number'
@@ -123,7 +173,7 @@ const TransferToBankAccountScreen = (props) => {
                                     marginBottom: 5
                                 }}>
                                     OFO Cash</Text>
-                                <Text style={{ fontSize: 14 }}>Balance Rp0</Text>
+                                <Text style={{ fontSize: 14 }}>Balance Rp {user.current_cash}</Text>
                             </View>
                         </View>
                     </View>
@@ -148,7 +198,8 @@ const TransferToBankAccountScreen = (props) => {
                                     Rp
                                 </Text>
                                 <Input
-                                    inputStyle={{marginBottom:-10, fontSize:25, marginTop:-5}}    
+                                    editable={!loading}
+                                    inputStyle={{marginBottom:-10, fontSize:25, marginTop:-5}}
                                     inputContainerStyle={{width:'70%', alignSelf:'center', marginLeft:-50, borderBottomColor:"#F8F8F8"}}
                                     placeholderTextColor="black"
                                     placeholder='0'
@@ -168,8 +219,8 @@ const TransferToBankAccountScreen = (props) => {
                         }}>
                     <Input
                         label={message === "" ? "" : "Message (Optional)"}
-                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
-                        inputStyle={{width:10, marginBottom:-10}}    
+                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}}
+                        inputStyle={{width:10, marginBottom:-10}}
                         inputContainerStyle={{width:'87%', alignSelf:'center', marginTop:-10}}
                         placeholderTextColor="grey"
                         placeholder='Message (Optional)'
@@ -179,8 +230,9 @@ const TransferToBankAccountScreen = (props) => {
                 </View>
                 {/* ================= */}
                 <View style={{opacity: checkButton ? 0.3 : 1 }}>
-                    <TouchableOpacity 
-                    onPress={() => setTransferModal(true)}
+                    <TouchableOpacity
+                        disabled={loading}
+                    onPress={doInquiryTransfer}
                     style={{
                         backgroundColor:'#06B3BA',
                         borderRadius:25,
@@ -190,14 +242,16 @@ const TransferToBankAccountScreen = (props) => {
                         justifyContent:'center',
                         marginTop:30
                     }}>
-                        <Text style={{
-                            color:'white',
-                            alignSelf:'center',
-                            fontWeight:'bold',
-                            fontSize:20
-                        }}>
-                            NEXT
-                        </Text>
+                        {
+                            loading ? <ActivityIndicator color='white' /> : <Text style={{
+                                color:'white',
+                                alignSelf:'center',
+                                fontWeight:'bold',
+                                fontSize:20
+                            }}>
+                                NEXT
+                            </Text>
+                        }
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -208,7 +262,7 @@ const TransferToBankAccountScreen = (props) => {
                     <View style={StylePLN.containerModal}>
                     <Text style={{marginLeft:20 ,color:"#4D2A86", fontWeight:"bold", fontSize:20, marginTop:10}}>Transfer Confirmation</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Receiver Name</Text>
-                    <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>{receiverID}</Text>
+                    <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>{receiverName}</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Receiver Bank</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>{receiverBank}</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Receiver Bank Account</Text>
@@ -235,12 +289,14 @@ const TransferToBankAccountScreen = (props) => {
                                 <Text style={{fontWeight:"bold"}}>Rp.{totalTransfer}</Text>
                             </View>
                         </View>
-                        <TouchableOpacity style={StylePLN.buttonConfirm}>
-                            <Text style={StylePLN.textConfirm}>
-                                Confirm
-                            </Text>
+                        <TouchableOpacity disabled={loading} style={StylePLN.buttonConfirm} onPress={doConfirmTransfer}>
+                            {
+                                loading ? <ActivityIndicator color="white" /> : <Text style={StylePLN.textConfirm}>
+                                    Confirm
+                                </Text>
+                            }
                         </TouchableOpacity>
-                        <TouchableOpacity style={StylePLN.buttonCancel} onPress={() => setTransferModal(false)} >
+                        <TouchableOpacity disabled={loading} style={StylePLN.buttonCancel} onPress={() => setTransferModal(false)} >
                             <Text style={StylePLN.textCancel}>
                                 Cancel
                             </Text>

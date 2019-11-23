@@ -1,13 +1,48 @@
 import React, { useState } from 'react';
-import { Platform, Text, View, ScrollView, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import {
+    Platform,
+    Text,
+    View,
+    ScrollView,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    ActivityIndicator,
+} from 'react-native';
 import styles from '../../styles/appScreen/StyleHeader';
 import stylesProfile from '../../styles/appScreen/StyleProfile';
 import { ListItem } from 'react-native-elements'
+import {useDispatch, useSelector} from 'react-redux';
+import {deauthenticate} from '../../actions/user';
+import {setAccessToken} from '../../actions';
+import AsyncStorage from '@react-native-community/async-storage';
+import {signOut} from '../../services/AuthenticationAPI';
+import Toast from 'react-native-simple-toast';
+import {useLoading} from '../../core/hook';
 
-const ProfileScreen = (props) => {
+const ProfileScreen = ({navigation}) => {
+    const accessToken = useSelector(state => state.root.accessToken);
+    const user = useSelector(state => state.user.authenticatedUser);
+    const [loading, showLoading, hideLoading] = useLoading();
+    const dispatch = useDispatch();
 
-    const [fullname, setFullname] = useState("Aldo Ignata Chandra");
-    const [phoneNumber, setPhoneNumber] = useState("081331994242");
+    const onSignOut = async () => {
+        try {
+            showLoading();
+            if (accessToken !== null) {
+                const deviceID = await AsyncStorage.getItem('openSignalDeviceID');
+                const response = await signOut(accessToken, deviceID, Platform.OS.toUpperCase());
+                Toast.showWithGravity(response.message, Toast.LONG, Toast.TOP);
+            }
+            dispatch(setAccessToken(null));
+            dispatch(deauthenticate());
+            navigation.navigate('SignIn');
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        } finally {
+            hideLoading();
+        }
+    };
 
     const listMenuAccount = [
         {
@@ -63,15 +98,15 @@ const ProfileScreen = (props) => {
                     <View style={stylesProfile.containerDataProfile}>
                         <View style={stylesProfile.containerFullname}>
                             <Image
-                                source={require('../../assets/images/imagesProfile/IconOFOPremier.png')}
+                                source={user.image ? { uri: user.image } : require('../../assets/images/imagesTabNav/IconProfile.png')}
                                 style={stylesProfile.imageProfile}/>
                         </View>
                         <View style={stylesProfile.containerPhoneNumber}>
                             <Text style={stylesProfile.fullname}>
-                                {fullname}
+                                {user.full_name}
                             </Text>
                             <Text style={stylesProfile.phoneNumber}>
-                                {phoneNumber}
+                                {user.phone_number}
                             </Text>
                         </View>
                     </View>
@@ -95,7 +130,7 @@ const ProfileScreen = (props) => {
                 </View>
                 <View style={stylesProfile.containerCodeOFO}>
                     <TouchableOpacity style={stylesProfile.containerButtonCode}>
-                        <ImageBackground 
+                        <ImageBackground
                             source={require('../../assets/images/imagesProfile/QRCode.png')}
                             style={stylesProfile.imageCode}
                             >
@@ -104,7 +139,7 @@ const ProfileScreen = (props) => {
                         </ImageBackground>
                     </TouchableOpacity>
                     <TouchableOpacity style={stylesProfile.containerButtonCode}>
-                        <ImageBackground 
+                        <ImageBackground
                             source={require('../../assets/images/imagesProfile/Barcode.png')}
                             style={stylesProfile.imageCode}
                             >
@@ -121,7 +156,7 @@ const ProfileScreen = (props) => {
                 <View>
                 {
                     listMenuAccount.map((l, i) => (
-                        <TouchableOpacity key={i} onPress={() => l.menu === "Change Profile" ? props.navigation.navigate("EditProfile") : props.navigation.navigate("")}>
+                        <TouchableOpacity key={i} onPress={() => l.menu === "Change Profile" ? navigation.navigate("EditProfile") : navigation.navigate("")}>
                             <ListItem
                                 containerStyle={{height:55}}
                                 leftAvatar={<Image source={l.icon} style={{width:25, height:25}}></Image>}
@@ -172,10 +207,12 @@ const ProfileScreen = (props) => {
                     <Text style={stylesProfile.footerText}>#DontUseDANAIN</Text>
                     <Text style={stylesProfile.footerText}>#DontUseLinkWae</Text>
                     <Text style={[stylesProfile.footerText, {marginBottom:20}]}>#JustUseOFO!</Text>
-                    <TouchableOpacity style={stylesProfile.buttonSignOut}>
-                        <Text style={stylesProfile.textSignOut}>
-                            Sign Out
-                        </Text>
+                    <TouchableOpacity style={stylesProfile.buttonSignOut} onPress={onSignOut}>
+                        {
+                            loading ? <ActivityIndicator color="#06B3BA" /> : <Text style={stylesProfile.textSignOut}>
+                                Sign Out
+                            </Text>
+                        }
                     </TouchableOpacity>
                 </View>
             </ScrollView>

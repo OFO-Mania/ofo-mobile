@@ -1,35 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, Picker, TouchableOpacity, Button } from "react-native";
+import {View, Text, Image, ScrollView, Picker, TouchableOpacity, Button, ActivityIndicator} from 'react-native';
 import { Input } from 'react-native-elements';
 import styles from '../../styles/appScreen/StyleHeader';
 import StylePLN from '../../styles/appScreen/StylePLN';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from "react-native-modal";
 import { Divider } from 'react-native-elements';
+import {useDispatch, useSelector} from 'react-redux';
+import {useLoading} from '../../core/hook';
+import {confirmTransferToUser, inquiryTransferToUser, instantTopup} from '../../services/TransactionAPI';
+import {authenticate} from '../../actions/user';
+import Toast from 'react-native-simple-toast';
 
 const TransferToOFOUserScreen = (props) => {
+    const accessToken = useSelector(state => state.root.accessToken);
+    const user = useSelector(state => state.user.authenticatedUser);
+    const [loading, setLoading, hideLoading] = useLoading();
+    const dispatch = useDispatch();
 
     const [checkButton, setCheckButton] = useState(true);
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [message, setMessage] = useState("");
-    const [balance, setBalance] = useState("");
+    const [note, setNote] = useState("");
+    const [amount, setAmount] = useState("");
     const [totalTransfer, setTotalTransfer] = useState("");
-    const [transferModal, setTransferModal] = useState(false)
+    const [transferModal, setTransferModal] = useState(false);
 
     //Receiver Transfer
-    const [receiverID, setReceiverID] = useState("Aldo Ignata Chandra")
-    const [receiverNumber, setReceiverNumber] = useState("081331994242");
+    const [receiverName, setReceiverName] = useState('');
+    const [receiverNumber, setReceiverNumber] = useState('');
+
+    const doInquiryTransfer = async () => {
+        if (parseInt(amount) < 1000) {
+            Toast.showWithGravity('Minimal transfer amount is Rp 1.000.', Toast.LONG, Toast.TOP);
+            return;
+        }
+        try {
+            setLoading();
+            const { data } = await inquiryTransferToUser(accessToken, phoneNumber);
+            setReceiverName(data.target.full_name);
+            setReceiverNumber(data.target.phone_number);
+            setTransferModal(true);
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        } finally {
+            hideLoading();
+        }
+    };
+
+    const doConfirmTransfer = async () => {
+        try {
+            setLoading();
+            const { data } = await confirmTransferToUser(accessToken, phoneNumber, totalTransfer, note);
+            setTransferModal(false);
+            Toast.showWithGravity('Transfer successful.', Toast.LONG, Toast.TOP);
+            dispatch(authenticate(data.user));
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        } finally {
+            hideLoading();
+        }
+    };
 
     useEffect(() => {
-        setTotalTransfer(parseInt(balance) + 2000);
-        
-        if (phoneNumber !== "" && balance !== "") {
+        setTotalTransfer(parseInt(amount));
+
+        if (phoneNumber !== "" && amount !== "") {
             setCheckButton(false);
         } else {
             setCheckButton(true);
         }
 
-    },[balance, phoneNumber]);
+    },[amount, phoneNumber]);
 
     return(
         <>
@@ -40,11 +81,11 @@ const TransferToOFOUserScreen = (props) => {
                     flexDirection:'row',
                     alignItems:'center'
                 }}>
-                <Icon 
-                    style={{marginLeft:20}} 
-                    name='chevron-left' 
-                    size={24} 
-                    color='white' 
+                <Icon
+                    style={{marginLeft:20}}
+                    name='chevron-left'
+                    size={24}
+                    color='white'
                     onPress={() => props.navigation.navigate("TransferNavigation")}
                 />
                 <Text style={styles.headerSmallText}>
@@ -59,9 +100,10 @@ const TransferToOFOUserScreen = (props) => {
                     alignItems:'center'
                 }}>
                     <Input
+                        editable={!loading}
                         label={phoneNumber === "" ? "" : "Enter Phone Number"}
-                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
-                        inputStyle={{width:10, marginBottom:-10}}    
+                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}}
+                        inputStyle={{width:10, marginBottom:-10}}
                         inputContainerStyle={{width:'87%', alignSelf:'center', marginTop:-10}}
                         placeholderTextColor="grey"
                         placeholder='Enter Phone Number'
@@ -122,7 +164,7 @@ const TransferToOFOUserScreen = (props) => {
                                     marginBottom: 5
                                 }}>
                                     OFO Cash</Text>
-                                <Text style={{ fontSize: 14 }}>Balance Rp0</Text>
+                                <Text style={{ fontSize: 14 }}>Balance Rp {user.current_cash}</Text>
                             </View>
                         </View>
                     </View>
@@ -147,14 +189,15 @@ const TransferToOFOUserScreen = (props) => {
                                     Rp
                                 </Text>
                                 <Input
-                                    inputStyle={{marginBottom:-10, fontSize:25, marginTop:-5}}    
+                                    editable={!loading}
+                                    inputStyle={{marginBottom:-10, fontSize:25, marginTop:-5}}
                                     inputContainerStyle={{width:'70%', alignSelf:'center', marginLeft:-50, borderBottomColor:"#F8F8F8"}}
                                     placeholderTextColor="black"
                                     placeholder='0'
                                     keyboardType="number-pad"
                                     maxLength={12}
-                                    onChangeText={balance => setBalance(balance)}
-                                    value={balance}
+                                    onChangeText={balance => setAmount(balance)}
+                                    value={amount}
                                 />
                             </View>
                         </View>
@@ -166,21 +209,21 @@ const TransferToOFOUserScreen = (props) => {
                             alignItems:'center'
                         }}>
                     <Input
-                        label={message === "" ? "" : "Message (Optional)"}
-                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}} 
-                        inputStyle={{width:10, marginBottom:-10}}    
+                        label={note === "" ? "" : "Message (Optional)"}
+                        labelStyle={{marginLeft:15,color:"black", marginTop:10, fontWeight:"100", fontSize:14}}
+                        inputStyle={{width:10, marginBottom:-10}}
                         inputContainerStyle={{width:'87%', alignSelf:'center', marginTop:-10}}
                         placeholderTextColor="grey"
                         placeholder='Message (Optional)'
-                        onChangeText={message => setMessage(message)}
-                        value={message}
+                        onChangeText={message => setNote(message)}
+                        value={note}
                     />
                 </View>
                 {/* ================= */}
                 <View style={{opacity: checkButton ? 0.3 : 1 }}>
-                    <TouchableOpacity 
-                    disabled={checkButton}
-                    onPress={() => setTransferModal(true)}
+                    <TouchableOpacity
+                    disabled={checkButton || loading}
+                    onPress={doInquiryTransfer}
                     style={{
                         backgroundColor: '#06B3BA',
                         borderRadius:25,
@@ -190,15 +233,17 @@ const TransferToOFOUserScreen = (props) => {
                         justifyContent:'center',
                         marginTop:30
                     }}>
-                        <Text style={{
-                            opacity:1,
-                            color:'white',
-                            alignSelf:'center',
-                            fontWeight:'bold',
-                            fontSize:20
-                        }}>
-                            NEXT
-                        </Text>
+                        {
+                            loading ? <ActivityIndicator color="white" /> : <Text style={{
+                                opacity:1,
+                                color:'white',
+                                alignSelf:'center',
+                                fontWeight:'bold',
+                                fontSize:20
+                            }}>
+                                NEXT
+                            </Text>
+                        }
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -209,37 +254,39 @@ const TransferToOFOUserScreen = (props) => {
                     <View style={StylePLN.containerModal}>
                     <Text style={{marginLeft:20 ,color:"#4D2A86", fontWeight:"bold", fontSize:20, marginTop:10}}>Transfer Confirmation</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Receiver Name</Text>
-                    <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>{receiverID}</Text>
+                    <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>{receiverName}</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Receiver OFO Number</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>{receiverNumber}</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Payment Method</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>OFO Cash</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:14, opacity:0.5, marginTop:10}}>Message (Optional)</Text>
                     <Text style={{marginLeft:20 ,color:"black", fontWeight:"100", fontSize:17}}>
-                        {message === "" ? "-" : message}
+                        {note === "" ? "-" : note}
                     </Text>
                         <View style={{width:"85%", height:180,alignSelf:"center", marginTop:20}}>
                             <Text style={{fontWeight:"bold", fontSize:18, marginBottom:2}}>Detail</Text>
                             <View style={{flexDirection:"row", justifyContent:"space-between"}}>
                                 <Text style={{opacity:0.4}}>Transfer Balance</Text>
-                                <Text style={{opacity:0.4}}>Rp.{balance}</Text>
+                                <Text style={{opacity:0.4}}>Rp {amount}</Text>
                             </View>
                             <View style={{flexDirection:"row", justifyContent:"space-between", marginBottom:10}}>
                                 <Text style={{opacity:0.4}}>Transfer Fee</Text>
-                                <Text style={{opacity:0.4}}>Rp.2000</Text>
+                                <Text style={{opacity:0.4}}>Rp 0</Text>
                             </View>
                             <Divider style={{ backgroundColor: 'black', borderBottomWidth:1, opacity:0.1}} />
                             <View style={{flexDirection:"row", justifyContent:"space-between"}}>
                                 <Text style={{fontWeight:"bold"}}>Total</Text>
-                                <Text style={{fontWeight:"bold"}}>Rp.{totalTransfer}</Text>
+                                <Text style={{fontWeight:"bold"}}>Rp {totalTransfer}</Text>
                             </View>
                         </View>
-                        <TouchableOpacity style={StylePLN.buttonConfirm}>
-                            <Text style={StylePLN.textConfirm}>
-                                Confirm
-                            </Text>
+                        <TouchableOpacity disabled={loading} style={StylePLN.buttonConfirm} onPress={doConfirmTransfer}>
+                            {
+                                loading ? <ActivityIndicator color="white" /> : <Text style={StylePLN.textConfirm}>
+                                    Confirm
+                                </Text>
+                            }
                         </TouchableOpacity>
-                        <TouchableOpacity style={StylePLN.buttonCancel} onPress={() => setTransferModal(false)} >
+                        <TouchableOpacity disabled={loading} style={StylePLN.buttonCancel} onPress={() => setTransferModal(false)} >
                             <Text style={StylePLN.textCancel}>
                                 Cancel
                             </Text>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Text,
     View,
@@ -14,17 +14,17 @@ import styles from '../../styles/appScreen/StyleHeader';
 import stylesDeals from '../../styles/appScreen/StyleDeals';
 import stylesHome from '../../styles/appScreen/StyleHome';
 import Carousel from 'react-native-snap-carousel';
+import {useDispatch, useSelector} from 'react-redux';
+import {getDeals} from '../../services/DealAPI';
+import Toast from 'react-native-simple-toast';
 
 const DealsScreen = (props) => {
 
+    const accessToken = useSelector(state => state.root.accessToken);
+    const dispatch = useDispatch();
+
     const [carousel, setCarousel] = useState(null);
-    const [bannerList, setBannerList] = useState([
-        { deals: require('../../assets/images/imagesDeals/Cashback1.jpg') , ID: 1},
-        { deals: require('../../assets/images/imagesDeals/Cashback2.jpg') , ID: 2},
-        { deals: require('../../assets/images/imagesDeals/Cashback3.jpg') , ID: 3},
-        { deals: require('../../assets/images/imagesDeals/Cashback4.jpg') , ID: 4},
-        { deals: require('../../assets/images/imagesDeals/Cashback5.jpg') , ID: 5},
-    ]);
+    const [deals, setDeals] = useState([]);
     const [happinessList, sethappinessList] = useState([
         { deals: require('../../assets/images/imagesDeals/Happiness1.jpg'), title:"A Placefull Place to Relax!", desc:"Pondok Sari Hotel", voucher:"5", price:"Rp 500.000" },
         { deals: require('../../assets/images/imagesDeals/Happiness2.jpg'), title:"Chew Chew Boba!", desc:"Fook Yew", voucher:"344", price:"Rp 30.000" },
@@ -48,24 +48,35 @@ const DealsScreen = (props) => {
     const [activeFavoriteSlide, setActiveFavoriteSlide] = useState(0);
     const [refreshing, setRefreshing] = useState(false);
 
-    const onRefresh = () => {
-        setRefreshing(true);
-        const timeout = setTimeout(() => {
-            setRefreshing(false);
-            clearTimeout(timeout);
-        }, 3000);
+    const refreshDeals = async () => {
+        try {
+            const { data } = await getDeals(accessToken);
+            setDeals(data.deals);
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        }
     };
+
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await refreshDeals();
+        setRefreshing(false);
+    };
+
+    useEffect(() => {
+        refreshDeals().then();
+    }, []);
 
     //Banner Deals
     const renderBannerDeals = ({item, index}) => {
         return (
             <View style={stylesDeals.containerBannerDeals}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("DealsDetails")}>
-                    <Image source={item.deals} style={stylesDeals.imageBannerDeals}/>
+                <TouchableOpacity onPress={() => props.navigation.navigate("DealsDetails", { deal: item })}>
+                    <Image source={{ uri: item.image }} style={stylesDeals.imageBannerDeals}/>
                 </TouchableOpacity>
             </View>
         );
-    }
+    };
 
     // Banner Happiness & Favorite
     const renderBannerHappiness = ({item, index}) => {
@@ -146,7 +157,7 @@ const DealsScreen = (props) => {
                 <Text style={stylesDeals.subTitle}>Get OFO recent promo</Text>
                 <Carousel
                     ref={setCarousel}
-                    data={bannerList}
+                    data={deals}
                     renderItem={renderBannerDeals}
                     sliderWidth={Dimensions.get("window").width}
                     itemWidth={Dimensions.get("window").width - 45}

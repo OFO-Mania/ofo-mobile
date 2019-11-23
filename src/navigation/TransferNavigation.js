@@ -1,21 +1,21 @@
 import React from 'react';
 import { createAppContainer} from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
-import { createStackNavigator } from "react-navigation-stack";  
+import { createStackNavigator } from "react-navigation-stack";
 
 import TransferNew from '../screens/appScreen/TransferNewScreen';
-import TransferFavorit from '../screens/appScreen/TransferFavoritScreen';
+import TransferFavorit from '../screens/appScreen/TransferFavouriteScreen';
 
 const TransferNav = createMaterialTopTabNavigator(
     {
-        TransferNew: { 
+        TransferNew: {
             screen: TransferNew,
             navigationOptions: {
                 tabBarLabel: 'New',
             }
         },
-        TransferFavorit: { 
-            screen: TransferFavorit, 
+        TransferFavorit: {
+            screen: TransferFavorit,
             navigationOptions: {
                 tabBarLabel: 'Favourite',
             }
@@ -37,7 +37,7 @@ const TransferNav = createMaterialTopTabNavigator(
         indicatorStyle: {
           borderBottomColor: '#00AFF0',
           borderBottomWidth: 2,
-  
+
         },
       },
     }
@@ -59,6 +59,6 @@ const TransferNav = createMaterialTopTabNavigator(
       },
     },
   });
-  
-  
+
+
   export default createAppContainer(TransferNavigation);
