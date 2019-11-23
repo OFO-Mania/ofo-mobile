@@ -12,7 +12,7 @@ import {
 } from '../../services/AuthenticationAPI';
 import Toast from 'react-native-simple-toast';
 
-const OTPForgetSecurityCode = (props) => {
+const OTPForgetSecurityCode = ({navigation}) => {
     const phoneNumber = navigation.getParam('phoneNumber', '');
 
     const [verifyCode, setVerifyCode] = useState('');
@@ -67,7 +67,7 @@ const OTPForgetSecurityCode = (props) => {
                     name='chevron-left'
                     size={24}
                     color='white'
-                    onPress={() => props.navigation.navigate("SecurityCode")}
+                    onPress={() => navigation.navigate("SecurityCode")}
                 />
                 <Text style={styles.textHeader}>FORGET SECURITY CODE</Text>
             </View>
