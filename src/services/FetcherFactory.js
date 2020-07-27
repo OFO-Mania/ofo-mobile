@@ -35,12 +35,12 @@ class FetcherFactory {
     switch (configSet) {
       case ConfigSet.AUTH_API:
         return {
-          baseURL: 'https://ofo.mycashier.pw/api/auth/',
+          baseURL: 'https://engine.ofo.danang.id/api/auth/',
           validateStatus,
         };
       case ConfigSet.RESOURCE_API:
         return {
-          baseURL: 'https://ofo.mycashier.pw/api/v1/',
+          baseURL: 'https://engine.ofo.danang.id/api/v1/',
           validateStatus,
         };
     }
