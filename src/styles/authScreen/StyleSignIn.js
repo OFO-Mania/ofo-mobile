@@ -6,29 +6,30 @@ const styles = StyleSheet.create({
         backgroundColor:"#4D2A86",
     },
     containerPhoneNumber: {
-        flex:1, 
-        flexDirection:"row", 
-        marginHorizontal:50, 
-        justifyContent:"center", 
+        flex:1,
+        flexDirection:"row",
+        marginHorizontal:50,
+        justifyContent:"center",
         alignItems:"center",
         marginTop: 130
     },
     containerSignIn: {
-        flex:1, 
-        flexDirection:"column", 
-        marginHorizontal:50, 
-        justifyContent:"center", 
+        flex:1,
+        flexDirection:"column",
+        marginHorizontal:50,
+        justifyContent:"center",
         alignItems:"center",
         marginTop: 25,
     },
     containerHelp: {
-        flex:1, 
-        flexDirection:"row", 
-        justifyContent:"center", 
+        flex:1,
+        flexDirection:"row",
+        justifyContent:"center",
         alignItems:"center",
         marginTop: 25
     },
     title: {
+        fontFamily: "Choplin-Medium-DEMO",
         textAlign:"center",
         fontWeight:"bold",
         fontSize:65,
@@ -44,13 +45,13 @@ const styles = StyleSheet.create({
         height:30
     },
     iconUser: {
-        width:25, 
+        width:25,
         height:25
     },
     buttonSignIn: {
         height:40,
-        width:275, 
-        alignItems:"center", 
+        width:275,
+        alignItems:"center",
         justifyContent:"center",
         borderRadius: 20,
         borderWidth:1
@@ -58,10 +59,10 @@ const styles = StyleSheet.create({
     buttonJoinNow: {
         backgroundColor:"#06B3BA",
         height:40,
-        width:275, 
-        alignItems:"center", 
+        width:275,
+        alignItems:"center",
         justifyContent:"center",
-        borderColor:"#266C9C", 
+        borderColor:"#266C9C",
         borderRadius: 20,
     },
     textButton: {

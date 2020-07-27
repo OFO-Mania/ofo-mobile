@@ -1,22 +1,58 @@
-import React, { useState } from 'react';
-import { View, StatusBar, Text, TouchableOpacity } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, StatusBar, Text, BackHandler, ActivityIndicator, Platform} from 'react-native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../../styles/authScreen/StyleOTP';
+import AsyncStorage from '@react-native-community/async-storage';
+import {setAccessToken, setIsNewUser} from '../../actions';
+import {authenticate} from '../../actions/user';
+import Toast from 'react-native-simple-toast';
+import {useLoading} from '../../core/hook';
+import {useDispatch} from 'react-redux';
+import {setSecurityCode} from '../../services/AuthenticationAPI';
 
-const CreateSecurityCodeScreen = (props) => {
+const CreateSecurityCodeScreen = ({navigation}) => {
+    const fromForget = navigation.getParam('fromForget', false);
+    const oneTimeToken = navigation.getParam('oneTimeToken', '');
+    const [localSecurityCode, setLocalSecurityCode] = useState('');
+    const [loading, showLoading, hideLoading] = useLoading();
+    const dispatch = useDispatch();
 
-    const [securityCode, setSecurityCode] = useState("");
+    const onCodeFullfiled = async (securityCode) => {
+        try {
+            showLoading();
+            const deviceID = await AsyncStorage.getItem('openSignalDeviceID');
+            const response = await setSecurityCode(oneTimeToken, securityCode, deviceID, Platform.OS.toUpperCase());
+            dispatch(setIsNewUser(!fromForget));
+            dispatch(authenticate(response.data.user));
+            dispatch(setAccessToken(response.data.token));
+            Toast.showWithGravity(response.message, Toast.LONG, Toast.TOP);
+        } catch (error) {
+            Toast.showWithGravity(error.message, Toast.LONG, Toast.TOP);
+        } finally {
+            hideLoading();
+        }
+    };
+
+    useEffect(() => {
+        const handler = () => {
+            BackHandler.exitApp();
+        };
+        BackHandler.addEventListener('hardwareBackPress', handler);
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', handler);
+        }
+    });
 
     return(
         <>
             <StatusBar backgroundColor="#422575" barStyle="light-content" />
             <View style={styles.headerJoin}>
-                <Icon 
-                    style={{marginLeft:20}} 
-                    name='chevron-left' 
-                    size={24} 
-                    color='#422575' 
+                <Icon
+                    style={{marginLeft:20}}
+                    name='chevron-left'
+                    size={24}
+                    color='#422575'
                 />
                 <Text style={styles.textHeader}>JOIN OFO</Text>
             </View>
@@ -28,20 +64,20 @@ const CreateSecurityCodeScreen = (props) => {
                 <OTPInputView
                     style={styles.inputOTP}
                     pinCount={6}
-                    code={securityCode}
-                    onCodeChanged = {code => setSecurityCode(code)}
+                    code={localSecurityCode}
+                    onCodeChanged = {setLocalSecurityCode}
                     autoFocusOnLoad
                     codeInputFieldStyle={styles.underlineStyleBase2}
                     codeInputHighlightStyle={styles.underlineStyleHighLighted}
-                    onCodeFilled = {(code => {
-                        console.log(`Code is ${code}, you are good to go!`);
-                        // props.navigation.navigate("SuccessJoin");   //NewUser
-                        props.navigation.navigate("SecurityCode");  //ForgetPassword
-                    })}
+                    onCodeFilled = {onCodeFullfiled}
+                    secureTextEntry={true}
                 />
+                {
+                    loading && <ActivityIndicator />
+                }
             </View>
         </>
     )
-}
+};
 
-export default CreateSecurityCodeScreen; 
+export default CreateSecurityCodeScreen;

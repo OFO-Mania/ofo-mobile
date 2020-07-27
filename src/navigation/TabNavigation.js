@@ -49,7 +49,7 @@ const TabNavigator = createBottomTabNavigator({
         tabBarIcon: ({focused}) => {
             const { routeName } = navigation.state;
             let sourceImage;
-            
+
             if (routeName === 'Home') {
                 sourceImage = focused ? require('../assets/images/imagesTabNav/IconHomeSelected.png') : require('../assets/images/imagesTabNav/IconHome.png');
             } else if (routeName === 'Deals') {
@@ -61,11 +61,10 @@ const TabNavigator = createBottomTabNavigator({
             } else {
                 sourceImage = require('../assets/images/imagesTabNav/IconBarcode.png')
             }
-            
+
             if (routeName === 'Scan') {
-                return <Image style={{width: 50, height: 50, marginBottom:20,borderWidth:1, borderColor:"grey", borderRadius:25}} 
-                              source={sourceImage} 
-                              />;
+                return <Image style={{width: 50, height: 50, marginBottom:20,borderWidth:3, borderColor:"white", borderRadius:25}}
+                              source={sourceImage} />;
             } else {
                 return <Image style={{width: 25, height: 25}} source={sourceImage} />;
             }
@@ -74,10 +73,13 @@ const TabNavigator = createBottomTabNavigator({
         activeTintColor: '#4D2A86',
         inactiveTintColor: 'grey',
         style: {
+            height: 55,
             borderTopWidth: 0.2,
-            marginBottom: 4,
+            paddingVertical: 5,
+            shadowRadius: 10,
+            shadowOpacity: 0.2,
         }
-    },   
+    },
   }),
 })
 

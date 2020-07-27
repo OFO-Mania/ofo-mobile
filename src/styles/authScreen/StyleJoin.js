@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         marginHorizontal:35
     },
     headerJoin: {
-        flex: 0.1,
+        height:60,
         backgroundColor:"#4D2A86",
         flexDirection:"row",
         alignItems:"center" 
